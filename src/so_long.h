@@ -14,7 +14,8 @@ typedef struct s_mlx_data
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	void	*img_player;
+	void	*img_floor;
 	int		x;
 	int		y;
 	int		bits_per_pixel;

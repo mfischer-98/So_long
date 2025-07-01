@@ -6,25 +6,25 @@ int player_moves(int keysym, t_mlx_data *data)
 	{
 		data->x += data->img_width;
 		mlx_clear_window(data->mlx, data->win);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, data->x, data->y);
 	}
 	if (keysym == XK_Left)
 	{
 		data->x -= data->img_width;
 		mlx_clear_window(data->mlx, data->win);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, data->x, data->y);
 	}
 	if (keysym == XK_Up)
 	{
 		data->y -= data->img_width;
 		mlx_clear_window(data->mlx, data->win);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, data->x, data->y);
 	}
 	if (keysym == XK_Down)
 	{
 		data->y += data->img_width;
 		mlx_clear_window(data->mlx, data->win);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		mlx_put_image_to_window(data->mlx, data->win, data->img_player, data->x, data->y);
 	}
 	return (0);
 }
