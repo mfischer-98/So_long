@@ -5,7 +5,7 @@ MAKE	= make --no-print-directory -C
 #==============================================================================#
 
 LIBFT_URL 	= git@github.com:mfischer-98/Libft
-MLX_URL		= https://cdn.intra.42.fr/document/document/32345/minilibx-linux.tgz
+MLX_URL		= git@github.com:42paris/minilibx-linux
 
 
 #==============================================================================#
@@ -37,7 +37,7 @@ BONUS_SRC_PATH		= src_bonus
 BONUS_INC_PATH		= src_bonus
 BONUS_BUILD_PATH	= .build_bonus
 
-FILES	= main.c
+FILES	= main.c events.c
 
 SRC				= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
@@ -122,7 +122,7 @@ get_mlx:
 	@echo "☆ $(CYA)Getting MLX submodule$(D)"
 	@$(MKDIR_P) $(LIBS_PATH)
 	@if test ! -d "$(MLX_PATH)"; then \
-		curl -s -kL $(MLX_URL) | tar zxf -; \
+		git clone $(MLX_URL) $(MLX_PATH); \
 		mv minilibx-linux ./lib/mlx; \
 		echo "🌸 $(BMAG)MLX submodule download$(D): &(GRB)$(_SUCCESS)"; \
 	else \
