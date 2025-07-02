@@ -4,7 +4,7 @@ MAKE	= make --no-print-directory -C
 #                                RESOURCES URLS                                #
 #==============================================================================#
 
-LIBFT_URL 	= git@github.com:mfischer-98/Libft
+LIBFT_URL 	= git@github.com:mfischer-98/Libft_extra#
 MLX_URL		= git@github.com:42paris/minilibx-linux
 
 
@@ -37,7 +37,7 @@ BONUS_SRC_PATH		= src_bonus
 BONUS_INC_PATH		= src_bonus
 BONUS_BUILD_PATH	= .build_bonus
 
-FILES	= main.c events.c
+FILES	= main.c events.c check_map/check_map.c check_map/parsing_map.c
 
 SRC				= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)

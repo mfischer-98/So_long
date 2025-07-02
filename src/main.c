@@ -1,18 +1,21 @@
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	char	*floor_path = "img/floor.xpm";
-	char	*player_path = "img/player.xpm";
-	t_mlx_data	data;
-	int	x;
-	int	y;
+/* 	char		*floor_path = "img/floor.xpm";
+	char		*player_path = "img/player.xpm";
+	t_player	player;
+	t_data		data; */
 
-// Inicializando
-	data.mlx = mlx_init(); //aloca memoria com malloc
+	//map checking
+	parsing_map(argc, argv);
+
+	/* // Iniciatializing
+	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (MALLOC_ERROR);
 
+	// Creating window
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "so_long");
 	if (!data.win)
 	{
@@ -21,35 +24,36 @@ int	main(void)
 		return (MALLOC_ERROR);
 	}
 
-	// Formando a imagem de fundo
-	data.img_floor = mlx_xpm_file_to_image(data.mlx, floor_path, &data.img_width, &data.img_height);
-	if (!data.img_floor)
+	// Background image
+	data.img = mlx_xpm_file_to_image(data.mlx, floor_path, &data.img_width, &data.img_height);
+	if (!data.img)
 		return (MALLOC_ERROR);
 
-	y = 0;
-	while (y < HEIGHT)
+	data.y = 0;
+	while (data.y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		data.x = 0;
+		while (data.x < WIDTH)
 		{
-			mlx_put_image_to_window(data.mlx, data.win, data.img_floor, x, y);
-			x += data.img_width;
+			mlx_put_image_to_window(data.mlx, data.win, data.img, data.x, data.y);
+			data.x += data.img_width;
 		}
-		y += data.img_height;
+		data.y += data.img_height;
 	}
 
 	// Formando a imagem player
-	data.img_player = mlx_xpm_file_to_image(data.mlx, player_path, &data.img_width, &data.img_height);
-	if (!data.img_player)
+	player.img = mlx_xpm_file_to_image(data.mlx, player_path, &player.img_width, &player.img_height);
+	if (!player.img)
 		return (MALLOC_ERROR);
-
-	mlx_put_image_to_window(data.mlx, data.win, data.img_player, data.x, data.y);
+	player.x = 0;
+	player.y = 0;
+	mlx_put_image_to_window(data.mlx, data.win, player.img, player.x, player.y);
 	
 	// Key events
-	mlx_key_hook(data.win, &handle_input, &data); //lembrar que uso a janela nesse
-	mlx_loop_hook(data.mlx, &handle_input, &data); //fecha o loop
+	mlx_key_hook(data.win, &handle_input, &data);
+	mlx_loop_hook(data.mlx, &handle_input, &data);
 
 	// Game loop
 	mlx_loop(data.mlx); //keeps the game going
-	return (0);
+	return (0); */
 }
