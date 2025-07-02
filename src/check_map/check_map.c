@@ -49,7 +49,7 @@ int	check_mapvalid(t_map *map)
 	}
 	if (map->is_collectable < 1 || map->is_exit != 1 || map->is_player != 1)
 	{
-		printf("Invalid map :(");
+		printf("Invalid map :(\n");
 		return (0);
 	}
 	return (1);
