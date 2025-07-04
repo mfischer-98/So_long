@@ -43,11 +43,20 @@ typedef struct s_data
 	int		y;
 }				t_data;
 
-int	handle_input(int keysym, t_data *data);
-int	player_moves(int keysym, t_data *data);
+// Map
+void ft_initialize(t_map *map);
 int	parsing_map(int argc, char **argv);
 int	check_mapname(char *name);
+int	check_fd(char *file);
+int check_characters(t_map *map);
 int	check_mapvalid(t_map *map);
 int	check_walls(t_map *map);
+void	str_trim(char *str);
+int	line_len(char *str);
+
+// Moves and Window
+int	player_moves(int keysym, t_data *data);
+int	handle_input(int keysym, t_data *data);
+
 
 #endif

@@ -13,17 +13,49 @@ int	check_mapname(char *name)
 	}
 	if (!ft_strncmp(name, ".ber", 5))
 	{
-		printf("We dont want a file only named .ber!\n");
+		ft_printf("We dont want a file only named .ber!\n");
 		return (0);
 	}
 	name = ft_strrchr(name, '.');
 	if (!ft_strncmp(&name[i], ".ber", 5))
 	{
-		printf("Yay, this is a valid name!\n");
+		ft_printf("Yay, this is a valid name!\n");
 		return (1);
 	}
-	printf("Please put a valid map name >.<\n");
+	ft_printf("Please put a valid map name >.<\n");
 	return (0);
+}
+
+int	check_fd(char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	return (1);
+}
+
+int check_characters(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (map->design[i][j])
+		{
+			if (map->design[i][j] != 'P' || map->design[i][j] != 'E' || map->design[i][j] != 'C')
+				return (0);
+			if (map->design[i][j] != '1' || map->design[i][j] != '0')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	check_mapvalid(t_map *map)
@@ -49,7 +81,7 @@ int	check_mapvalid(t_map *map)
 	}
 	if (map->is_collectable < 1 || map->is_exit != 1 || map->is_player != 1)
 	{
-		printf("Invalid map :(\n");
+		ft_printf("Invalid map :(\n");
 		return (0);
 	}
 	return (1);
@@ -67,25 +99,13 @@ int	check_walls(t_map *map)
 		while (x < map->width - 1)
 		{
 			if(map->design[y][0] != '1')
-			{
-				printf("Walls invalid :(");
 				return (0);
-			}
 			if(map->design[y][map->width - 1] != '1')
-			{
-				printf("Walls invalid :(");
 				return (0);
-			}
 			if(map->design[0][x] != '1')
-			{
-				printf("Walls invalid :(");
 				return (0);
-			}
 			if(map->design[map->height - 1][x] != '1')
-			{
-				printf("Walls invalid :(");
 				return (0);
-			}
 			x++;
 		}
 		y++;

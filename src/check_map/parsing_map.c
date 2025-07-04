@@ -1,36 +1,63 @@
 #include "../so_long.h"
 
-void	map_size(char *map_file, t_map *map) //ver size, height, se tem linha em branco e se e retangular
+void	map_height(char *map_file, t_map *map)
 {
 	int	fd;
 
-	map->height = 0;
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return ;
 	while (get_next_line(fd) != NULL)
 		map->height++;
-	close(fd);//dar free
+	close(fd);
 }
 
-void map_read(char *map_file, t_map *map)
+void	map_read(char *map_file, t_map *map)
 {
-		int	fd;
-		int	i;
+	int	fd;
+	int	i;
 
-		i = 0;
-		fd = open(map_file, O_RDONLY);
-		if (fd < 0)
-			return (0);
-	 	map->design = malloc (sizeof(char *) * size);
-		if (!map->design)
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+		return ;
+	map->design = malloc (sizeof(char *) * map->height);
+	if (!map->design)
+	{
+		close(fd);
+		return ;
+	}
+	i = 0;
+	while (i < map->height)
+	{
+		map->design[i] = get_next_line(fd);
+		i++;
+	}
+	map->design[i] = NULL;
+	close(fd);
+}
+
+int	map_format(t_map *map)
+{
+	int	i;
+	int	width;
+
+	i = 0;
+	while (i < map->height)
+		str_trim(map->design[i++]);
+	i = 0;
+	width = line_len(map->design[i]);
+	while (i < map->height)
+	{
+		if ((width != line_len(map->design[i])) && (map->design[i] != NULL))
 		{
-			close(fd);
-			return ;
+			ft_printf("The lines are not all the same size :(\n");
+			return (0);
 		}
-		while (i < map->height)
-			map->design[i++] = get_next_line(fd);
-		close(fd);//dar free
+		ft_printf("%s\n", map->design[i]);
+		i++;
+	}
+	map->width = width;
+	return (1);
 }
 
 int parsing_map(int argc, char **argv)
@@ -39,19 +66,27 @@ int parsing_map(int argc, char **argv)
 	
 	if(argc != 2)
 	{
-		printf("Have only one map file.");
+		ft_printf("Have only one map file.");
 		return (0);
 	}
+	ft_initialize(&map);
 	if (check_mapname(argv[1]))
-	{
-		map_size(argv[1], &map);
+	{	
+		if (!check_fd(argv[1]))
+			ft_printf("Error\nInvalid file\n");
+		map_height(argv[1], &map);
 		map_read(argv[1], &map);
-		if (check_mapvalid(&map))
-			printf("Amazing structure <3\n");
-		if (check_walls(&map))
-			printf ("Walls securely closed <3\n");
+		if (!check_characters(&map))
+			ft_printf("Error\nInvalid characters\n");
+		if (!map_format(&map))
+			ft_printf("Error\nLines are not same size\n");
+		if (!check_mapvalid(&map))
+			ft_printf("Error\nInvalid map characters\n");
+		if (!check_walls(&map))
+			ft_printf ("Error\nInvalid walls\n");
 		return (0);
 	}
-	printf("Error in map\n");
+	else
+		ft_printf("Error\nInvalid map name");
 	return (0);
 }
