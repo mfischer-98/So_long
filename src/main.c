@@ -7,7 +7,6 @@ int	main(int argc, char **argv)
 	t_player	player;
 	t_data		data; */
 
-	//map checking
 	parsing_map(argc, argv);
 
 	/* // Iniciatializing

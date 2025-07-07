@@ -50,13 +50,17 @@ int	map_format(t_map *map)
 	{
 		if ((width != line_len(map->design[i])) && (map->design[i] != NULL))
 		{
-			ft_printf("The lines are not all the same size :(\n");
+			ft_printf("Error\nNot rectangular :(\n");
 			return (0);
 		}
-		ft_printf("%s\n", map->design[i]);
 		i++;
 	}
 	map->width = width;
+	if ((map->width < 5 && map->height < 3) || (map->width < 3 && map->height < 5))
+	{
+			ft_printf("Error\nNot rectangular :(\n");
+			return (0);
+	}
 	return (1);
 }
 
@@ -64,29 +68,25 @@ int parsing_map(int argc, char **argv)
 {
 	t_map	map;
 	
-	if(argc != 2)
-	{
-		ft_printf("Have only one map file.");
+	if (!check_args)
 		return (0);
-	}
+	if (!open_fd(argv[1])) //checking fd and content
+		return (0);
 	ft_initialize(&map);
-	if (check_mapname(argv[1]))
-	{	
-		if (!check_fd(argv[1]))
-			ft_printf("Error\nInvalid file\n");
-		map_height(argv[1], &map);
-		map_read(argv[1], &map);
-		if (!check_characters(&map))
-			ft_printf("Error\nInvalid characters\n");
-		if (!map_format(&map))
-			ft_printf("Error\nLines are not same size\n");
-		if (!check_mapvalid(&map))
-			ft_printf("Error\nInvalid map characters\n");
-		if (!check_walls(&map))
-			ft_printf ("Error\nInvalid walls\n");
+	map_height(argv[1], &map);
+	map_read(argv[1], &map);
+	if (!check_characters(&map)) //checking if there is non wanted characters
+		return (0);
+	if (!map_format(&map)) //check rectangular
+		return (0);
+	if (!check_min_characters(&map)) //check character rules
+		return (0);
+	if (!check_walls(&map))
+	{
+		ft_printf ("Error\nInvalid walls :(\n");
 		return (0);
 	}
-	else
-		ft_printf("Error\nInvalid map name");
+	if (!valid_path(&map))
+		return (0);
 	return (0);
 }

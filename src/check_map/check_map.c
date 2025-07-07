@@ -1,5 +1,15 @@
 #include "../so_long.h"
 
+int	check_args(int count)
+{
+	if (argc != 2)
+	{
+		ft_printf("Error\nCompile with one map file :(\n");
+		return (0);
+	}
+	return (1);
+}
+
 int	check_mapname(char *name)
 {
 	int	i;
@@ -26,16 +36,6 @@ int	check_mapname(char *name)
 	return (0);
 }
 
-int	check_fd(char *file)
-{
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	return (1);
-}
-
 int check_characters(t_map *map)
 {
 	int	i;
@@ -48,9 +48,15 @@ int check_characters(t_map *map)
 		while (map->design[i][j])
 		{
 			if (map->design[i][j] != 'P' || map->design[i][j] != 'E' || map->design[i][j] != 'C')
+			{
+				ft_printf("Error\nInvalid characters :(\n");
 				return (0);
+			}
 			if (map->design[i][j] != '1' || map->design[i][j] != '0')
+			{
+				ft_printf("Error\nInvalid characters :(\n");
 				return (0);
+			}
 			j++;
 		}
 		i++;
@@ -58,7 +64,7 @@ int check_characters(t_map *map)
 	return (1);
 }
 
-int	check_mapvalid(t_map *map)
+int	check_min_characters(t_map *map)
 {
 	int	x;
 	int	y;
@@ -81,7 +87,7 @@ int	check_mapvalid(t_map *map)
 	}
 	if (map->is_collectable < 1 || map->is_exit != 1 || map->is_player != 1)
 	{
-		ft_printf("Invalid map :(\n");
+		ft_printf("Error\nInvalid map characters :(\n");
 		return (0);
 	}
 	return (1);
@@ -112,4 +118,3 @@ int	check_walls(t_map *map)
 	}
 	return (1);
 }
-
