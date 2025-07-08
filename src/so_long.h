@@ -46,12 +46,12 @@ typedef struct s_data
 }				t_data;
 
 // Map
-int		parsing_map(int argc, char **argv);
-int		check_fd(int fd);
+int		parsing_map(int argc, char **argv, t_map *map);
+int		check_fd(char *file_name);
 void 	ft_initialize(t_map *map);
 void	str_trim(char *str);
 int		line_len(char *str);
-int		free_map (t_map *map);
+void	free_map (t_map *map);
 int		check_args(int count);
 int		check_mapname(char *name);
 int 	check_characters(t_map *map);
@@ -59,10 +59,10 @@ int		check_min_characters(t_map *map);
 int		check_walls(t_map *map);
 void	map_height(char *map_file, t_map *map);
 void	map_read(char *map_file, t_map *map);
-int	map_format(t_map *map);
-void	player_position (t_map &map);
+int		map_format(t_map *map);
+void	player_position (t_map *map);
 void	flood_fill(t_map *map, int x, int y);
-int		valid_exit(t_map *map);
+int		valid_exit(t_map *map, char *file);
 
 // Moves and Window
 int	player_moves(int keysym, t_data *data);

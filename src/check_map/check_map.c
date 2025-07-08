@@ -2,7 +2,7 @@
 
 int	check_args(int count)
 {
-	if (argc != 2)
+	if (count != 2)
 	{
 		ft_printf("Error\nCompile with one map file :(\n");
 		return (0);
@@ -45,14 +45,10 @@ int check_characters(t_map *map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (map->design[i][j])
+		while (j < map->width)
 		{
-			if (map->design[i][j] != 'P' || map->design[i][j] != 'E' || map->design[i][j] != 'C')
-			{
-				ft_printf("Error\nInvalid characters :(\n");
-				return (0);
-			}
-			if (map->design[i][j] != '1' || map->design[i][j] != '0')
+			if (map->design[i][j] != 'P' || map->design[i][j] != 'E' || map->design[i][j] != 'C'
+				|| map->design[i][j] != '1' || map->design[i][j] != '0')
 			{
 				ft_printf("Error\nInvalid characters :(\n");
 				return (0);

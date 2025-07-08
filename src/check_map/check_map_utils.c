@@ -1,18 +1,25 @@
 #include "../so_long.h"
 
-int	check_fd(int fd)
+int	check_fd(char *file_name)
 {
-	open(fd, O_RDONLY);
+	int	fd;
+	char *line;
+
+	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_printf("Error\nInvalid map file\n");
 		return (0);
 	}
-	if (get_next_line(fd) == NULL)
+	line = get_next_line(fd);
+	if (line == NULL)
 	{
 		ft_printf("Error\nInvalid map file\n");
+		free(line);
+		close(fd);
 		return (0);
 	}
+	free(line);
 	close(fd);
 	return (1);
 }
@@ -41,6 +48,17 @@ void	str_trim(char *str)
 			str[i] = '\0';
 		i++;
 	}
+	//if text file was created on windows there is \r\n
+	if (ft_strrchr(str, '\r'))
+	{
+		i = 0;
+		while (str[i])
+		{
+			if ((str[i] == '\r') && (str[i + 1] == '\0'))
+			str[i] = '\0';
+			i++;
+		}
+	}
 }
 
 int	line_len(char *str)
@@ -56,13 +74,14 @@ int	line_len(char *str)
 	return (len);
 }
 
-int	free_map (t_map *map)
+void	free_map (t_map *map)
 {
 	int	i;
 
 	i = 0;
+	if (!map->design)
+		return ;
 	while (i < map->height)
-		free(map->design[i]);
-	free(map->design)
-	return (0);
+		free(map->design[i++]);
+	free(map->design);
 }

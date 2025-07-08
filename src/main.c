@@ -2,12 +2,14 @@
 
 int	main(int argc, char **argv)
 {
+	t_map	map;
 /* 	char		*floor_path = "img/floor.xpm";
 	char		*player_path = "img/player.xpm";
 	t_player	player;
 	t_data		data; */
 
-	parsing_map(argc, argv);
+	parsing_map(argc, argv, &map);
+	free_map(&map); //mudar de lugar depois
 
 	/* // Iniciatializing
 	data.mlx = mlx_init();

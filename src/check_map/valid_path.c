@@ -1,6 +1,6 @@
 #include "../so_long.h"
 
-void	player_position (t_map &map)
+void	player_position (t_map *map)
 {
 	int	x;
 	int y;
@@ -30,7 +30,7 @@ void flood_fill(t_map *map, int x, int y)
 	exit_reach = 0;
 	if (x < 0 || y < 0 || x > map->width || y > map->height)
 		return ;
-	if (map->desig[y][x] == '1' || map->design[y][x] == 'F')
+	if (map->design[y][x] == '1' || map->design[y][x] == 'F')
 		return ;
 	if (map->design[y][x] == 'C')
 	{
@@ -50,21 +50,20 @@ void flood_fill(t_map *map, int x, int y)
 	flood_fill(map, x, y + 1);
 }
 
-int	valid_exit(t_map *map)
+int	valid_exit(t_map *map, char *file)
 {
 	int	collectables;
 	int	x;
 	int	y;
 
 	collectables = map->is_collectable;
-	player_position(&map);
+	player_position(map);
 	x = map->start_x;
 	y = map->start_y;
-	flood_fill(&map, x, y);
-	//dar free do design e ler mapa de novo
-	free_map(&map);
-	map_read(argv[1], &map);
-	//se o numero de collectables for maior que 0 nao pega tudo e se saida for 1 nao chegou la
+	flood_fill(map, x, y);
+	//free map and read again
+	free_map(map);
+	map_read(file, map);
 	if (map->is_collectable != 0 || map->is_exit)
 	{
 		ft_printf("Error\nNo valid path\n");
@@ -72,5 +71,5 @@ int	valid_exit(t_map *map)
 	}
 	map->is_collectable = collectables;
 	map->is_exit = 1;
-	return (1); //deu tudo certo
+	return (1);
 }

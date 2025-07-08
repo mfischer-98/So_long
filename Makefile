@@ -150,17 +150,17 @@ $(BONUS_BUILD_PATH):
 clean:				## Remove object files
 	@echo "🌸 $(BMAG)Cleaning object files$(D)"
 	@$(RM) $(BUILD_PATH) $(BONUS_BUILD_PATH); \
-	echo "☆ $(YEL)Removing $(CYA)$(BUILD_PATH) $(BONUS_BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
+	echo "   $(YEL)Removing $(CYA)$(BUILD_PATH) $(BONUS_BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
 
 fclean: clean		## Remove executable and .gdbinit
 	@echo "🌸 $(BMAG)Cleaning executables$(D)"
 	@$(RM) $(NAME) $(NAME_BONUS);
-	@echo "☆ $(YEL)Removing $(CYA)$(NAME) $(NAME_BONUS)$(D) file: $(_SUCCESS)"; \
+	@echo "   $(YEL)Removing $(CYA)$(NAME) $(NAME_BONUS)$(D) file: $(_SUCCESS)"; \
 
 libclean: fclean	## Remove libs
 	@echo "🌸 $(BMAG)Cleaning libraries$(D)"
 	@$(RM) $(LIBS_PATH)
-	@echo "☆ $(YEL)Removing lib folder & files$(D): $(_SUCCESS)"
+	@echo "   $(YEL)Removing lib folder & files$(D): $(_SUCCESS)"
 
 re: libclean all	## Purge & Recompile
 
