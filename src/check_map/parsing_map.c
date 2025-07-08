@@ -48,9 +48,10 @@ int	map_format(t_map *map)
 	int	i;
 	int	width;
 
-	i = 0;
-	while (i < map->height)
-		str_trim(map->design[i++]);
+	i = -1;
+	printf("map height = [%d]\n", map->height);
+	while (++i < map->height - 1)
+		str_trim(map->design[i]);
 	i = 0;
 	width = line_len(map->design[i]);
 	while (i < map->height)
