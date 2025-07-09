@@ -19,43 +19,42 @@ int	check_mapname(char *name)
 	{
 		name = ft_strrchr(name, '/');
 		name++;
-		
 	}
 	if (!ft_strncmp(name, ".ber", 5))
 	{
-		ft_printf("We dont want a file only named .ber!\n");
+		ft_printf("Error\nWe dont want a file only named .ber!\n");
 		return (0);
 	}
 	name = ft_strrchr(name, '.');
 	if (!ft_strncmp(&name[i], ".ber", 5))
 	{
-		ft_printf("Yay, this is a valid name!\n");
+		ft_printf("Yay, this is a valid name <3\n");
 		return (1);
 	}
-	ft_printf("Please put a valid map name >.<\n");
+	ft_printf("Error\nPlease put a valid map name >.<\n");
 	return (0);
 }
 
 int check_characters(t_map *map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (i < map->height)
+	y = 0;
+	while (y < map->height)
 	{
-		j = 0;
-		while (j < map->width)
+		x = 0;
+		while (x < map->width)
 		{
-			if (map->design[i][j] != 'P' || map->design[i][j] != 'E' || map->design[i][j] != 'C'
-				|| map->design[i][j] != '1' || map->design[i][j] != '0')
+			if (map->design[y][x] != 'P' && map->design[y][x] != 'E' && map->design[y][x] != 'C'
+				&& map->design[y][x] != '1' && map->design[y][x] != '0')
 			{
 				ft_printf("Error\nInvalid characters :(\n");
 				return (0);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (1);
 }

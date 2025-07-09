@@ -34,11 +34,8 @@ void	map_read(char *map_file, t_map *map)
 		return ;
 	}
 	i = 0;
-	while (i < map->height)
-	{
-		map->design[i] = get_next_line(fd);
+	while ((map->design[i] = get_next_line(fd)) != NULL)
 		i++;
-	}
 	map->design[i] = NULL;
 	close(fd);
 }
@@ -78,12 +75,14 @@ int parsing_map(int argc, char **argv, t_map *map)
 		return (0);
 	if (!check_fd(argv[1])) //checking fd and content
 		return (0);
+	if (!check_mapname(argv[1]))
+		return (0);
 	ft_initialize(map);
 	map_height(argv[1], map);
 	map_read(argv[1], map);
-	if (!check_characters(map)) //checking if there is non wanted characters
-		return (free_map(map), 0);
 	if (!map_format(map)) //check rectangular
+		return (0); //depois return (free(map), 0)
+	if (!check_characters(map)) //checking if there is non wanted characters
 		return (0);
 	if (!check_min_characters(map)) //check character rules
 		return (0);

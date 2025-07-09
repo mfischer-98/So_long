@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	t_data		data; */
 
 	parsing_map(argc, argv, &map);
-	free_map(&map); //mudar de lugar depois
+	//free_map(&map); //mudar de lugar depois
 
 	/* // Iniciatializing
 	data.mlx = mlx_init();

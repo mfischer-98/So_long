@@ -3,23 +3,13 @@
 int	check_fd(char *file_name)
 {
 	int	fd;
-	char *line;
 
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 	{
-		ft_printf("Error\nInvalid map file\n");
+		ft_printf("Error\nInvalid map file :(\n");
 		return (0);
 	}
-	line = get_next_line(fd);
-	if (line == NULL)
-	{
-		ft_printf("Error\nInvalid map file\n");
-		free(line);
-		close(fd);
-		return (0);
-	}
-	free(line);
 	close(fd);
 	return (1);
 }
