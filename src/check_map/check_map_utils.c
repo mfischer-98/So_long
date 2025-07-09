@@ -39,7 +39,7 @@ void	ft_initialize(t_map *map)
 	map->start_y = 0;
 }
 
-void	str_trim(char *str)
+void	line_trim(char *str)
 {
 	int	i;
 
@@ -49,16 +49,6 @@ void	str_trim(char *str)
 		if ((str[i] == '\n') && (str[i + 1] == '\0'))
 			str[i] = '\0';
 		i++;
-	}
-	if (ft_strrchr(str, '\r'))
-	{
-		i = 0;
-		while (str[i])
-		{
-			if ((str[i] == '\r') && (str[i + 1] == '\0'))
-				str[i] = '\0';
-			i++;
-		}
 	}
 }
 

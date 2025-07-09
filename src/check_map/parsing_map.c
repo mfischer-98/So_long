@@ -62,7 +62,7 @@ int	map_format(t_map *map)
 
 	i = -1;
 	while (++i < map->height - 1)
-		str_trim(map->design[i]);
+		line_trim(map->design[i]);
 	i = 0;
 	width = line_len(map->design[i]);
 	while (i < map->height)
@@ -110,5 +110,5 @@ int	parsing_map(int argc, char **argv, t_map *map)
 	}
 	if (!valid_exit(map, argv[1]))
 		return (0);
-	return (0);
+	return (1);
 }

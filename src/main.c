@@ -14,59 +14,30 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
-/* 	char		*floor_path = "img/floor.xpm";
-	char		*player_path = "img/player.xpm";
+	t_map		map;
+	t_game		game;
+	t_data		data;
 	t_player	player;
-	t_data		data; */
 
-	parsing_map(argc, argv, &map);
-	//free_map(&map); //mudar de lugar depois
-
-	/* // Iniciatializing
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (MALLOC_ERROR);
-
-	// Creating window
-	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "so_long");
-	if (!data.win)
+	if (!parsing_map(argc, argv, &map))
 	{
-		mlx_destroy_display(data.mlx); //clean up mlx connection
-		free(data.mlx);
+		free_map(&map);
+		return (1);
+	}
+	game.mlx = mlx_init();
+	if (!game.mlx)
+		return (MALLOC_ERROR);
+	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "so_long");
+	if (!game.win)
+	{
+		mlx_destroy_display(game.mlx);//clean up mlx connection
+		free(game.mlx);
 		return (MALLOC_ERROR);
 	}
-
-	// Background image
-	data.img = mlx_xpm_file_to_image(data.mlx, floor_path, &data.img_width, &data.img_height);
-	if (!data.img)
-		return (MALLOC_ERROR);
-
-	data.y = 0;
-	while (data.y < HEIGHT)
-	{
-		data.x = 0;
-		while (data.x < WIDTH)
-		{
-			mlx_put_image_to_window(data.mlx, data.win, data.img, data.x, data.y);
-			data.x += data.img_width;
-		}
-		data.y += data.img_height;
-	}
-
-	// Formando a imagem player
-	player.img = mlx_xpm_file_to_image(data.mlx, player_path, &player.img_width, &player.img_height);
-	if (!player.img)
-		return (MALLOC_ERROR);
-	player.x = 0;
-	player.y = 0;
-	mlx_put_image_to_window(data.mlx, data.win, player.img, player.x, player.y);
-	
-	// Key events
-	mlx_key_hook(data.win, &handle_input, &data);
-	mlx_loop_hook(data.mlx, &handle_input, &data);
-
-	// Game loop
-	mlx_loop(data.mlx); //keeps the game going
-	return (0); */
+	render_map(&map, &data, &game, &player);
+	//mouse_hook(game.win, &mlx_mouse_hook, &game);
+	mlx_key_hook(game.win, &handle_input, &game);
+	mlx_loop_hook(game.mlx, &handle_input, &game);
+	mlx_loop(game.mlx);
+	return (0);
 }

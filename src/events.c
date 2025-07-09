@@ -12,47 +12,59 @@
 
 #include "so_long.h"
 
-int	player_moves(int keysym, t_data *data)
+ int	player_moves(int keysym, t_game *game, t_data *data, t_player *player)
 {
+	return (0); //function not working
+	data->x = player->x;
+	data->y = player->y;
 	if (keysym == XK_Right)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		img_floor(data, game);
 		data->x += data->img_width;
-		//mlx_put_image_to_window(data->mlx, data->win, player->img, data->x, data->y);
+		img_player(data, game);
 	}
 	if (keysym == XK_Left)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		img_floor(data, game);
 		data->x -= data->img_width;
-		//mlx_put_image_to_window(data->mlx, data->win, player->img, data->x, data->y);
+		img_player(data, game);
 	}
 	if (keysym == XK_Up)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		img_floor(data, game);
 		data->y -= data->img_width;
-		//mlx_put_image_to_window(data->mlx, data->win, player->img, data->x, data->y);
+		img_player(data, game);
 	}
 	if (keysym == XK_Down)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+		img_floor(data, game);
 		data->y += data->img_width;
-		//mlx_put_image_to_window(data->mlx, data->win, player->img, data->x, data->y);
+		img_player(data, game);
 	}
 	return (0);
 }
 
-int	handle_input(int keysym, t_data *data)
+/* int	mouse_hook(int event, t_game *game)
+{
+	if (event == 17)
+	{
+		int close_window(game);
+		free(game->mlx);
+		exit(1);
+	}
+}*/
+
+int	handle_input(int keysym, t_game *game, t_data *data, t_player *player)
 {
 
 	if (keysym == XK_Escape) //escape key in X11 library
 	{
-		mlx_destroy_window(data->mlx, data->win);
-		//mlx_destroy_display(data->mlx);
-		//free(data->mlx);
-		//exit(1);
+ 		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		exit(1);
 	}
 	else
-		player_moves(keysym, data);
+		player_moves(keysym, game, data, player);
 	return (0);
-	//printf("The %d key has been pressed\n", keysym);
 }
