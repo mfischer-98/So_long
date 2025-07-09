@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:30:26 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/09 10:30:26 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 int	check_fd(char *file_name)
@@ -16,15 +28,15 @@ int	check_fd(char *file_name)
 
 void	ft_initialize(t_map *map)
 {
-	 map->is_collectable = 0;
-	 map->is_exit = 0;
-	 map->is_floor = 0;
-	 map->is_player = 0;
-	 map->design = NULL;
-	 map->height = 0;
-	 map->width = 0;
-	 map->start_x = 0;
-	 map->start_y = 0;
+	map->is_collectable = 0;
+	map->is_exit = 0;
+	map->is_floor = 0;
+	map->is_player = 0;
+	map->design = NULL;
+	map->height = 0;
+	map->width = 0;
+	map->start_x = 0;
+	map->start_y = 0;
 }
 
 void	str_trim(char *str)
@@ -38,14 +50,13 @@ void	str_trim(char *str)
 			str[i] = '\0';
 		i++;
 	}
-	//if text file was created on windows there is \r\n
 	if (ft_strrchr(str, '\r'))
 	{
 		i = 0;
 		while (str[i])
 		{
 			if ((str[i] == '\r') && (str[i + 1] == '\0'))
-			str[i] = '\0';
+				str[i] = '\0';
 			i++;
 		}
 	}
@@ -64,7 +75,7 @@ int	line_len(char *str)
 	return (len);
 }
 
-void	free_map (t_map *map)
+void	free_map(t_map *map)
 {
 	int	i;
 

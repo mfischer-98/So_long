@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:30:22 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/09 10:30:22 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 void	map_height(char *map_file, t_map *map)
 {
-	int	fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -34,8 +46,11 @@ void	map_read(char *map_file, t_map *map)
 		return ;
 	}
 	i = 0;
-	while ((map->design[i] = get_next_line(fd)) != NULL)
+	while (i < map->height)
+	{
+		map->design[i] = get_next_line(fd);
 		i++;
+	}
 	map->design[i] = NULL;
 	close(fd);
 }
@@ -46,7 +61,6 @@ int	map_format(t_map *map)
 	int	width;
 
 	i = -1;
-	printf("map height = [%d]\n", map->height);
 	while (++i < map->height - 1)
 		str_trim(map->design[i]);
 	i = 0;
@@ -55,36 +69,39 @@ int	map_format(t_map *map)
 	{
 		if ((width != line_len(map->design[i])) && (map->design[i] != NULL))
 		{
-			ft_printf("Error\nNot rectangular width :(\n");
+			ft_printf("Error\nNot rectangular :(\n");
 			return (0);
 		}
 		i++;
 	}
 	map->width = width;
-	if ((map->width < 5 && map->height < 3) || (map->width < 3 && map->height < 5))
+	if ((map->width < 5 && map->height < 3)
+		|| (map->width < 3 && map->height < 5))
 	{
-			ft_printf("Error\nNot rectangular :(\n");
-			return (0);
+		ft_printf("Error\nNot rectangular :(\n");
+		return (0);
 	}
 	return (1);
 }
 
-int parsing_map(int argc, char **argv, t_map *map)
+/*Remember to add return 
+(free(map), 0) before exit*/
+int	parsing_map(int argc, char **argv, t_map *map)
 {
 	if (!check_args(argc))
 		return (0);
-	if (!check_fd(argv[1])) //checking fd and content
+	if (!check_fd(argv[1]))
 		return (0);
 	if (!check_mapname(argv[1]))
 		return (0);
 	ft_initialize(map);
 	map_height(argv[1], map);
 	map_read(argv[1], map);
-	if (!map_format(map)) //check rectangular
-		return (0); //depois return (free(map), 0)
-	if (!check_characters(map)) //checking if there is non wanted characters
+	if (!map_format(map))
 		return (0);
-	if (!check_min_characters(map)) //check character rules
+	if (!check_characters(map))
+		return (0);
+	if (!check_min_characters(map))
 		return (0);
 	if (!check_walls(map))
 	{

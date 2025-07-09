@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:30:32 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/09 10:30:32 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 int	check_args(int count)
@@ -15,7 +27,7 @@ int	check_mapname(char *name)
 	int	i;
 
 	i = 0;
- 	if (ft_strrchr(name, '/')) //se tiver uma /, i = posicao da ultima barra
+	if (ft_strrchr(name, '/'))
 	{
 		name = ft_strrchr(name, '/');
 		name++;
@@ -35,7 +47,7 @@ int	check_mapname(char *name)
 	return (0);
 }
 
-int check_characters(t_map *map)
+int	check_characters(t_map *map)
 {
 	int	y;
 	int	x;
@@ -46,8 +58,9 @@ int check_characters(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			if (map->design[y][x] != 'P' && map->design[y][x] != 'E' && map->design[y][x] != 'C'
-				&& map->design[y][x] != '1' && map->design[y][x] != '0')
+			if (map->design[y][x] != 'P' && map->design[y][x] != 'E'
+				&& map->design[y][x] != 'C' && map->design[y][x] != '1'
+					&& map->design[y][x] != '0')
 			{
 				ft_printf("Error\nInvalid characters :(\n");
 				return (0);
@@ -70,11 +83,11 @@ int	check_min_characters(t_map *map)
 		x = 0;
 		while (x < map->width - 1)
 		{
-			if(map->design[y][x] == 'C')
+			if (map->design[y][x] == 'C')
 				map->is_collectable++;
-			else if(map->design[y][x] == 'P')
+			else if (map->design[y][x] == 'P')
 				map->is_player++;
-			else if(map->design[y][x] == 'E')
+			else if (map->design[y][x] == 'E')
 				map->is_exit++;
 			x++;
 		}
@@ -99,13 +112,13 @@ int	check_walls(t_map *map)
 		x = 0;
 		while (x < map->width - 1)
 		{
-			if(map->design[y][0] != '1')
+			if (map->design[y][0] != '1')
 				return (0);
-			if(map->design[y][map->width - 1] != '1')
+			if (map->design[y][map->width - 1] != '1')
 				return (0);
-			if(map->design[0][x] != '1')
+			if (map->design[0][x] != '1')
 				return (0);
-			if(map->design[map->height - 1][x] != '1')
+			if (map->design[map->height - 1][x] != '1')
 				return (0);
 			x++;
 		}

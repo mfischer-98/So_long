@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:30:39 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/09 10:30:39 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-void	player_position (t_map *map)
+void	player_position(t_map *map)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < map->height - 1)
@@ -23,9 +35,9 @@ void	player_position (t_map *map)
 	}
 }
 
-void flood_fill(t_map *map, int x, int y)
+void	flood_fill(t_map *map, int x, int y)
 {
-	int exit_reach;
+	int	exit_reach;
 
 	exit_reach = 0;
 	if (x < 0 || y < 0 || x > map->width || y > map->height)
@@ -61,7 +73,6 @@ int	valid_exit(t_map *map, char *file)
 	x = map->start_x;
 	y = map->start_y;
 	flood_fill(map, x, y);
-	//free map and read again
 	free_map(map);
 	map_read(file, map);
 	if (map->is_collectable != 0 || map->is_exit)

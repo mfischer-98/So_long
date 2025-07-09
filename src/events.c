@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:30:42 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/09 10:30:42 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int player_moves(int keysym, t_data *data)
+int	player_moves(int keysym, t_data *data)
 {
 	if (keysym == XK_Right)
 	{
@@ -29,7 +41,7 @@ int player_moves(int keysym, t_data *data)
 	return (0);
 }
 
-int handle_input(int keysym, t_data *data)
+int	handle_input(int keysym, t_data *data)
 {
 
 	if (keysym == XK_Escape) //escape key in X11 library
