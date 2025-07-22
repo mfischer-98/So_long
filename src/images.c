@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 14:43:08 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/22 16:49:34 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:56:02 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	img_floor(t_game *game)
 {
-	game->img = mlx_xpm_file_to_image(game->mlx, FLOOR, SIZE, SIZE);
+	int	res;
+
+	res = 64;
+	game->img = mlx_xpm_file_to_image(game->mlx, FLOOR, &res, &res);
 	if (!game->img)
 		return (MALLOC_ERROR);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
@@ -24,7 +27,10 @@ int	img_floor(t_game *game)
 
 int	img_obstacles(t_game *game)
 {
-	game->img = mlx_xpm_file_to_image(game->mlx, WALL, SIZE, SIZE);
+	int	res;
+
+	res = 64;
+	game->img = mlx_xpm_file_to_image(game->mlx, WALL, &res, &res);
 	if (!game->img)
 		return (MALLOC_ERROR);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
@@ -34,7 +40,10 @@ int	img_obstacles(t_game *game)
 
 int	img_player(t_game *game)
 {
-	game->img = mlx_xpm_file_to_image(game->mlx, PLAYER, SIZE, SIZE);
+	int	res;
+
+	res = 64;
+	game->img = mlx_xpm_file_to_image(game->mlx, PLAYER, &res, &res);
 	if (!game->img)
 		return (MALLOC_ERROR);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
@@ -44,7 +53,10 @@ int	img_player(t_game *game)
 
 int	img_collectable(t_game *game)
 {
-	game->img = mlx_xpm_file_to_image(game->mlx, WALL,  SIZE, SIZE);
+	int	res;
+
+	res = 64;
+	game->img[game->pos] = mlx_xpm_file_to_image(game->mlx, WALL, &res, &res);
 	if (!game->img)
 		return (MALLOC_ERROR);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
@@ -54,7 +66,10 @@ int	img_collectable(t_game *game)
 
 int	img_exit(t_game *game)
 {
-	game->img = mlx_xpm_file_to_image(game->mlx, EXIT,  SIZE, SIZE);
+	int	res;
+
+	res = 64;
+	game->img = mlx_xpm_file_to_image(game->mlx, EXIT, &res, &res);
 	if (!game->img)
 		return (MALLOC_ERROR);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,

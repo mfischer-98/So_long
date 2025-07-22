@@ -28,11 +28,12 @@ int	handle_input(int keysym, t_game *game)
 
 	dir_x = 0;
 	dir_y = 0;
-	if (keysym == XK_Escape) //escape key in X11 library
+	if (keysym == XK_Escape)
 		close_window(game);
-	else if (keysym == XK_Right)
+		 	else if (keysym == XK_Right) //&& check_walls
 	{
 		dir_x += 1;
+		player_right(game);
 	}
 	return (0);
 }

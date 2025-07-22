@@ -48,6 +48,7 @@ typedef struct s_game
 	void	*img;
 	int		img_x;
 	int		img_y;
+	int		pos;
 }				t_game;
 
 typedef struct s_player
