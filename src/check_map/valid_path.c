@@ -37,9 +37,6 @@ void	player_position(t_map *map)
 
 void	flood_fill(t_map *map, int x, int y)
 {
-	int	exit_reach;
-
-	exit_reach = 0;
 	if (x < 0 || y < 0 || x > map->width || y > map->height)
 		return ;
 	if (map->design[y][x] == '1' || map->design[y][x] == 'F')

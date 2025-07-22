@@ -6,58 +6,38 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:22:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/09 15:57:36 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/22 16:51:39 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	put_background(t_map *map, t_data *data, t_game *game)
+int	render_map(t_map *map, t_game *game, t_player *player)
 {
-	data->y = 0;
-	while (data->y < map->height)
+	game->img_y = 0;
+	while (game->img_y < map->height)
 	{
-		data->x = 0;
-		while (data->x < map->width)
+		game->img_x = 0;
+		while (game->img_x < map->width)
 		{
-			if (map->design[data->y][data->x] == '0') //change data->x
-				img_floor(data, game);
-			else if (map->design[data->y][data->x] == '1')
-				img_obstacles(data, game);
-			data->x++;
-		}
-		data->y++;
-	}
-	return (0);
-}
-
-int	put_objects(t_map *map, t_data *data, t_game *game, t_player *player)
-{
-	data->y = 0;
-	while (data->y < map->height)
-	{
-		data->x = 0;
-		while (data->x < map->width)
-		{
-			if (map->design[data->y][data->x] == 'P') //change data->x
+			if (map->design[game->img_y][game->img_x] == '0') //change game->x
+				img_floor(game, game);
+			else if (map->design[game->img_y][game->img_x] == '1')
+				img_obstacles(game, game);
+			else if (map->design[game->img_y][game->img_x] == 'P') //change game->x
 			{
-				img_player(data, game);
-				player->x = data->x;
-				player->y = data->y;
+				img_player(game, game);
+				player->x = game->img_x;
+				player->y = game->img_y;
 			}
-			else if (map->design[data->y][data->x] == 'E')
-				img_exit(data, game);
-			else if (map->design[data->y][data->x] == 'C')
-				img_collectable(data, game);
-			data->x++;
+			else if (map->design[game->img_y][game->img_x] == 'E')
+				img_exit(game, game);
+			else if (map->design[game->img_y][game->img_x] == 'C')
+				img_collectable(game, game);
+			game->img_x++;
 		}
-		data->y++;
+		game->img_y++;
 	}
 	return (0);
 }
 
-void	render_map(t_map *map, t_data *data, t_game *game, t_player *player)
-{
-	put_background(map, data, game);
-	put_objects(map, data, game, player);
-}

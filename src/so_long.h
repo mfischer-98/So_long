@@ -21,8 +21,12 @@
 # include "../lib/libft/libft.h"
 
 # define MALLOC_ERROR 1
-# define WIDTH 1920
-# define HEIGHT 1080
+# define SIZE 64
+# define FLOOR "img/floor.xpm"
+# define PLAYER "img/player.xpm"
+# define COLLECTABLE "img/collectable.xpm"
+# define WALL "img/obstacles.xpm"
+# define EXIT "img/exit.xpm"
 
 typedef struct s_map
 {
@@ -37,25 +41,20 @@ typedef struct s_map
 	char	**design;
 }			t_map;
 
-typedef struct s_data
-{
-	void	*img;
-	int		img_width;
-	int		img_height;
-	int		x;
-	int		y;
-}				t_data;
-
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	int		img_x;
+	int		img_y;
 }				t_game;
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
+	int		move_counter;
 }			t_player;
 
 // Map parsing
@@ -78,20 +77,19 @@ void	flood_fill(t_map *map, int x, int y);
 int		valid_exit(t_map *map, char *file);
 
 //Rendering
-void	render_map(t_map *map, t_data *data, t_game *game, t_player *player);
-int		put_background(t_map *map, t_data *data, t_game *game);
-int		put_objects(t_map *map, t_data *data, t_game *game, t_player *player);
+int	render_map(t_map *map, t_game *game, t_player *player);
 
 //Images
-int		img_floor(t_data *data, t_game *game);
-int		img_obstacles(t_data *data, t_game *game);
-int		img_player(t_data *data, t_game *game);
-int		img_collectable(t_data *data, t_game *game);
-int		img_exit(t_data *data, t_game *game);
+int		img_floor(t_game *game);
+int		img_obstacles(t_game *game);
+int		img_player(t_game *game);
+int		img_collectable(t_game *game);
+int		img_exit(t_game *game);
 
 // Moves and Window
-int	handle_input(int keysym, t_game *game, t_data *data, t_player *player);
-int	mouse_hook(int event, t_game *game);
-int	player_moves(int keysym, t_game *game, t_data *data, t_player *player);
+int	handle_input(int keysym, t_game *game);
+int	close_window(t_game *game);
+int	player_moves(int keysym, t_game *game, t_player *player, t_map *map);
+int	player_right(t_map *map, t_game *game);
 
 #endif

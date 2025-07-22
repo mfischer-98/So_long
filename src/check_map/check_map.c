@@ -39,10 +39,7 @@ int	check_mapname(char *name)
 	}
 	name = ft_strrchr(name, '.');
 	if (!ft_strncmp(&name[i], ".ber", 5))
-	{
-		ft_printf("Yay, this is a valid name <3\n");
 		return (1);
-	}
 	ft_printf("Error\nPlease put a valid map name >.<\n");
 	return (0);
 }
