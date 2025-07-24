@@ -61,7 +61,8 @@ typedef struct s_game
 	void		*img_wall;
 	int			img_x;
 	int			img_y;
-	int			pos;
+	int			exit_x;
+	int			exit_y;
 	t_map		map;
 	t_player	player;
 }				t_game;
@@ -103,6 +104,7 @@ int		handle_input(int keysym, t_game *game);
 void	clear_window(t_game *game);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
+void	check_exit(t_game *game, int dir_x, int dir_y);
 void	move_right(t_game *game, int x, int y);
 void	move_left(t_game *game, int x, int y);
 void	move_up(t_game *game, int x, int y);

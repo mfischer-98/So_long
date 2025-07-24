@@ -12,6 +12,13 @@
 
 #include "so_long.h"
 
+void	check_exit(t_game *game, int dir_x, int dir_y)
+{
+	game->exit_y = dir_y;
+	game->exit_x = dir_x;
+	game->map.design[dir_y][dir_x] = 'P';//player with exit behind
+}
+
 int	reached_goal(t_game *game)
 {
 	if (game->map.is_collectable == game->player.collected)
@@ -23,7 +30,7 @@ int	close_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
-	//dar free a tudo mapa, imagens etc
+	//FALTA DAR FREE DAS IMAGENS
 	free(game->mlx);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:22:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/24 11:57:39 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:23:38 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	render_init(t_game *game, t_map *map, t_player *player)
 {
-	game->pos = 0;
 	game->map = *map;
 	game->player = *player;
 	game->img = NULL;
+	game->exit_x = 0;
+	game->exit_y = 0;
 	player->move_counter = 0;
 	player->collected = 0;
 	load_images(game);
@@ -45,6 +46,11 @@ void	load_map(t_game *game)
 		}
 		y++;
 	}
+	if (game->exit_x && game->exit_y > 0 && game->map.design[game->exit_y ][game->exit_x] != 'P')
+	{
+		game->map.design[game->exit_y ][game->exit_x] = 'E';
+		render_map(game, game->exit_x, game->exit_y);
+	}
 }
 
 int		render_map(t_game *game, int x, int y)
@@ -64,10 +70,7 @@ int		render_map(t_game *game, int x, int y)
 	else if (game->map.design[y][x] == 'E')
 		game->img = game->img_exit;
 	else
-	{
-		printf("empty image ERROOO");
-		return (1);
-	}
+		return (1); //image invalid
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
 				x * SIZE, y * SIZE);
 	return (0);
