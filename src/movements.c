@@ -7,16 +7,17 @@ int		movements(t_game *game, int dir_x, int dir_y)
 	if (game->map.design[dir_y][dir_x] == '1')
 		return (0);
 	if (game->map.design[dir_y][dir_x] == 'C')
-	{
-		game->player.move_counter++;
-	}
+		game->player.collected++;
 	if (game->map.design[dir_y][dir_x] == 'E' && reached_goal(game))
 	{
-		ft_printf("Congratulations!\n");
+		game->player.move_counter++;
+		ft_printf("Congratulations!\nYou finished with %d moves :)", game->player.move_counter);
 		close_window(game);
 		return (0);
 	}
 	 //se for saida vai ser = player with exit behind
+	game->player.move_counter++;
+	ft_printf("Moves: %d\n", game->player.move_counter);
 	game->map.design[dir_y][dir_x] = 'P';
 	game->player.x = dir_x;
 	game->player.y = dir_y;
