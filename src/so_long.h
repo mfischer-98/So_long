@@ -41,22 +41,30 @@ typedef struct s_map
 	char	**design;
 }			t_map;
 
-typedef struct s_game
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	int		img_x;
-	int		img_y;
-	int		pos;
-}				t_game;
-
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	int		move_counter;
+	int			x;
+	int			y;
+	int			move_counter;
+	int			collected;
 }			t_player;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*img_player;
+	void		*img_collectable;
+	void		*img_exit;
+	void		*img_floor;
+	void		*img_wall;
+	int			img_x;
+	int			img_y;
+	int			pos;
+	t_map		map;
+	t_player	player;
+}				t_game;
 
 // Map parsing
 int		parsing_map(int argc, char **argv, t_map *map);
@@ -78,7 +86,10 @@ void	flood_fill(t_map *map, int x, int y);
 int		valid_exit(t_map *map, char *file);
 
 //Rendering
-int	render_map(t_map *map, t_game *game, t_player *player);
+int		load_images(t_game *game);
+void	render_init(t_game *game, t_map *map, t_player *player);
+void	load_map(t_game *game);
+int		render_map(t_game *game, int x, int y);
 
 //Images
 int		img_floor(t_game *game);
@@ -88,9 +99,14 @@ int		img_collectable(t_game *game);
 int		img_exit(t_game *game);
 
 // Moves and Window
-int	handle_input(int keysym, t_game *game);
-int	close_window(t_game *game);
-int	player_moves(int keysym, t_game *game, t_player *player, t_map *map);
-int	player_right(t_map *map, t_game *game);
+int		handle_input(int keysym, t_game *game);
+void	clear_window(t_game *game);
+int		close_window(t_game *game);
+int		reached_goal(t_game *game);
+void	move_right(t_game *game, int x, int y);
+void	move_left(t_game *game, int x, int y);
+void	move_up(t_game *game, int x, int y);
+void	move_down(t_game *game, int x, int y);
+int		movements(t_game *game, int dir_x, int dir_y);
 
 #endif

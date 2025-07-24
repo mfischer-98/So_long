@@ -69,7 +69,7 @@ int	map_format(t_map *map)
 	{
 		if ((width != line_len(map->design[i])) && (map->design[i] != NULL))
 		{
-			ft_printf("Error\nNot rectangular :(\n");
+			ft_printf("Error\nMap is not rectangular :(\n");
 			return (0);
 		}
 		i++;
@@ -78,7 +78,7 @@ int	map_format(t_map *map)
 	if ((map->width < 5 && map->height < 3)
 		|| (map->width < 3 && map->height < 5))
 	{
-		ft_printf("Error\nNot rectangular :(\n");
+		ft_printf("Error\nMap is not rectangular :(\n");
 		return (0);
 	}
 	return (1);
@@ -105,7 +105,7 @@ int	parsing_map(int argc, char **argv, t_map *map)
 		return (0);
 	if (!check_walls(map))
 	{
-		ft_printf ("Error\nInvalid walls :(\n");
+		ft_printf ("Error\nInvalid walls in map file :(\n");
 		return (0);
 	}
 	if (!valid_exit(map, argv[1]))

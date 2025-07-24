@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_map		map;
 	t_game		game;
+	t_map		map;
 	t_player	player;
 
 	if (!parsing_map(argc, argv, &map))
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		close_window(&game);
 		return (MALLOC_ERROR);
 	}
-	render_map(&map, &game, &player);
+	render_init(&game, &map, &player);
 	mlx_hook(game.win, 17, 0, &close_window, &game); //close window
 	mlx_key_hook(game.win, &handle_input, &game);
 	mlx_loop_hook(game.mlx, &handle_input, &game);

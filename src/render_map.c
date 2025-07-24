@@ -6,38 +6,70 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:22:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/22 17:27:28 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:57:39 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	render_map(t_map *map, t_game *game, t_player *player)
+void	render_init(t_game *game, t_map *map, t_player *player)
 {
-	game->img_y = 0;
-	while (game->img_y < map->height)
+	game->pos = 0;
+	game->map = *map;
+	game->player = *player;
+	game->img = NULL;
+	player->move_counter = 0;
+	player->collected = 0;
+	load_images(game);
+	load_map(game);
+}
+
+void	clear_window(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->win);
+}
+
+void	load_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map.height)
 	{
-		game->img_x = 0;
-		while (game->img_x < map->width)
+		x = 0;
+		while (x < game->map.width)
 		{
-			if (map->design[game->img_y][game->img_x] == '0')
-				img_floor(game);
-			else if (map->design[game->img_y][game->img_x] == '1')
-				img_obstacles(game);
-			else if (map->design[game->img_y][game->img_x] == 'P')
-			{
-				img_player(game);
-				player->x = game->img_x;
-				player->y = game->img_y;
-			}
-			else if (map->design[game->img_y][game->img_x] == 'E')
-				img_exit(game);
-			else if (map->design[game->img_y][game->img_x] == 'C')
-				img_collectable(game);
-			game->img_x++;
+			render_map(game, x, y);
+			x++;
 		}
-		game->img_y++;
+		y++;
 	}
+}
+
+int		render_map(t_game *game, int x, int y)
+{
+	if (game->map.design[y][x] == '1')
+		game->img = game->img_wall;
+	else if (game->map.design[y][x] == '0')
+		game->img = game->img_floor;
+	else if (game->map.design[y][x] == 'P')
+	{
+		game->img = game->img_player;
+		game->player.x = x;
+		game->player.y = y;
+	}
+	else if (game->map.design[y][x] == 'C')
+		game->img = game->img_collectable;
+	else if (game->map.design[y][x] == 'E')
+		game->img = game->img_exit;
+	else
+	{
+		printf("empty image ERROOO");
+		return (1);
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img,
+				x * SIZE, y * SIZE);
 	return (0);
 }
 
