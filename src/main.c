@@ -26,14 +26,15 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	if (!game.mlx)
 		return (MALLOC_ERROR);
-	game.win = mlx_new_window(game.mlx, map.width * SIZE, map.height * SIZE, "so_long");
+	game.win = mlx_new_window(game.mlx, map.width * SIZE,
+			map.height * SIZE, "so_long");
 	if (!game.win)
 	{
 		close_window(&game);
 		return (MALLOC_ERROR);
 	}
 	render_init(&game, &map, &player);
-	mlx_hook(game.win, 17, 0, &close_window, &game); //close window
+	mlx_hook(game.win, 17, 0, &close_window, &game);
 	mlx_key_hook(game.win, &handle_input, &game);
 	mlx_loop_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);

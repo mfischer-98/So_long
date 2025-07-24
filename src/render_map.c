@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:22:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/24 13:23:38 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:31:39 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ void	load_map(t_game *game)
 		}
 		y++;
 	}
-	if (game->exit_x && game->exit_y > 0 && game->map.design[game->exit_y ][game->exit_x] != 'P')
+	if (game->exit_x && game->exit_y > 0
+		&& game->map.design[game->exit_y ][game->exit_x] != 'P')
 	{
 		game->map.design[game->exit_y ][game->exit_x] = 'E';
 		render_map(game, game->exit_x, game->exit_y);
 	}
 }
 
-int		render_map(t_game *game, int x, int y)
+int	render_map(t_game *game, int x, int y)
 {
 	if (game->map.design[y][x] == '1')
 		game->img = game->img_wall;
@@ -72,7 +73,6 @@ int		render_map(t_game *game, int x, int y)
 	else
 		return (1); //image invalid
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
-				x * SIZE, y * SIZE);
+		x * SIZE, y * SIZE);
 	return (0);
 }
-
