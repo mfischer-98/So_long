@@ -44,7 +44,7 @@ int	handle_input(int keysym, t_game *game)
 	dir_y = game->player.y;
 	if (keysym == XK_Escape)
 		close_window(game);
-	else if (keysym == XK_Right)//&& check_walls(game, right)
+	else if (keysym == XK_Right)
 		move_right(game, dir_x, dir_y);
 	else if (keysym == XK_Left)
 		move_left(game, dir_x, dir_y);

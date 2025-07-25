@@ -61,7 +61,7 @@ int	map_format(t_map *map)
 	int	width;
 
 	i = -1;
-	while (++i < map->height - 1)
+	while (++i < map->height)
 		line_trim(map->design[i]);
 	i = 0;
 	width = line_len(map->design[i]);
@@ -69,7 +69,7 @@ int	map_format(t_map *map)
 	{
 		if ((width != line_len(map->design[i])) && (map->design[i] != NULL))
 		{
-			ft_printf("Error\nMap is not rectangular :(\n");
+			ft_printf("Error\nInvalid map :(\n");
 			return (0);
 		}
 		i++;
@@ -78,7 +78,7 @@ int	map_format(t_map *map)
 	if ((map->width < 5 && map->height < 3)
 		|| (map->width < 3 && map->height < 5))
 	{
-		ft_printf("Error\nMap is not rectangular :(\n");
+		ft_printf("Error\nInvalid map :(\n");
 		return (0);
 	}
 	return (1);
