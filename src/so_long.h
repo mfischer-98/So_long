@@ -24,8 +24,9 @@
 # define SIZE 64
 # define FLOOR "img/floor.xpm"
 # define PLAYER "img/player.xpm"
-# define COLLECTABLE "img/collectable.xpm"
-# define WALL "img/obstacles.xpm"
+# define PLAYER2 "img/player2.xpm"
+# define COLLECTABLE "img/collectable1.xpm"
+# define WALL "img/box.xpm"
 # define EXIT "img/exit.xpm"
 
 typedef struct s_map
@@ -55,6 +56,7 @@ typedef struct s_game
 	void		*win;
 	void		*img;
 	void		*img_player;
+	void		*img_player2;
 	void		*img_collectable;
 	void		*img_exit;
 	void		*img_floor;

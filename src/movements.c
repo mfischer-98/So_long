@@ -25,7 +25,7 @@ int	movements(t_game *game, int dir_x, int dir_y)
 		&& reached_goal(game))
 	{
 		game->player.move_counter++;
-		ft_printf("Congratulations!\nYou finished with %d moves :)",
+		ft_printf("Congratulations!\nYou finished with %d moves :)\n",
 			game->player.move_counter);
 		close_window(game);
 		return (0);

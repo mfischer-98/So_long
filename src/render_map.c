@@ -51,6 +51,8 @@ void	load_map(t_game *game)
 	{
 		game->map.design[game->exit_y ][game->exit_x] = 'E';
 		render_map(game, game->exit_x, game->exit_y);
+		game->exit_y = 0;
+		game->exit_x = 0;
 	}
 }
 
@@ -62,7 +64,10 @@ int	render_map(t_game *game, int x, int y)
 		game->img = game->img_floor;
 	else if (game->map.design[y][x] == 'P')
 	{
-		game->img = game->img_player;
+		if (game->map.design[game->exit_y][game->exit_x] == 'P')
+			game->img = game->img_player2;
+		else
+			game->img = game->img_player;
 		game->player.x = x;
 		game->player.y = y;
 	}

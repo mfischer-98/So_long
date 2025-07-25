@@ -16,7 +16,7 @@ void	check_exit(t_game *game, int dir_x, int dir_y)
 {
 	game->exit_y = dir_y;
 	game->exit_x = dir_x;
-	game->map.design[dir_y][dir_x] = 'P';//player with exit behind
+	game->map.design[dir_y][dir_x] = 'P';
 }
 
 int	reached_goal(t_game *game)

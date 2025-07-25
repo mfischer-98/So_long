@@ -26,6 +26,9 @@ int	load_images(t_game *game)
 	game->img_player = mlx_xpm_file_to_image(game->mlx, PLAYER, &res, &res);
 	if (!game->img_player)
 		return (MALLOC_ERROR);
+	game->img_player2 = mlx_xpm_file_to_image(game->mlx, PLAYER2, &res, &res);
+	if (!game->img_player2)
+		return (MALLOC_ERROR);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx, EXIT, &res, &res);
 	if (!game->img_exit)
 		return (MALLOC_ERROR);
