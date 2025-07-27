@@ -26,7 +26,15 @@
 # define PLAYER "img/player.xpm"
 # define PLAYER2 "img/player2.xpm"
 # define COLLECTABLE "img/collectable1.xpm"
-# define WALL "img/box.xpm"
+# define OBSTACLE "img/box.xpm"
+# define WALL_LEFT1 "img/walls/wall_topleft_corner.xpm"
+# define WALL_LEFT2 "img/walls/wall_left.xpm"
+# define WALL_LEFT3 "img/walls/wall_corner_downleft.xpm"
+# define WALL_RIGHT1 "img/walls/wall_topright_corner.xpm"
+# define WALL_RIGHT2 "img/walls/wall_right.xpm"
+# define WALL_RIGHT3 "img/walls/wall_corner_downright.xpm"
+# define WALL_CENTER1 "img/walls/wall_top_center.xpm"
+# define WALL_CENTER2 "img/walls/wall_down_center.xpm"
 # define EXIT "img/exit.xpm"
 
 typedef struct s_map
@@ -60,7 +68,15 @@ typedef struct s_game
 	void		*img_collectable;
 	void		*img_exit;
 	void		*img_floor;
-	void		*img_wall;
+	void		*img_obstacle;
+	void		*img_wall_left1;
+	void		*img_wall_left2;
+	void		*img_wall_left3;
+	void		*img_wall_right1;
+	void		*img_wall_right2;
+	void		*img_wall_right3;
+	void		*img_wall_center1;
+	void		*img_wall_center2;
 	int			img_x;
 	int			img_y;
 	int			exit_x;
@@ -90,20 +106,14 @@ int		valid_exit(t_map *map, char *file);
 
 //Rendering
 int		load_images(t_game *game);
+int		load_walls(t_game *game, int res);
 void	render_init(t_game *game, t_map *map, t_player *player);
 void	load_map(t_game *game);
+void	*render_walls(t_game *game, int x, int y);
 int		render_map(t_game *game, int x, int y);
-
-//Images
-int		img_floor(t_game *game);
-int		img_obstacles(t_game *game);
-int		img_player(t_game *game);
-int		img_collectable(t_game *game);
-int		img_exit(t_game *game);
 
 // Moves and Window
 int		handle_input(int keysym, t_game *game);
-void	clear_window(t_game *game);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
 void	check_exit(t_game *game, int dir_x, int dir_y);

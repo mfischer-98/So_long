@@ -25,11 +25,6 @@ void	render_init(t_game *game, t_map *map, t_player *player)
 	load_map(game);
 }
 
-void	clear_window(t_game *game)
-{
-	mlx_clear_window(game->mlx, game->win);
-}
-
 void	load_map(t_game *game)
 {
 	int	x;
@@ -56,15 +51,36 @@ void	load_map(t_game *game)
 	}
 }
 
+void	*render_walls(t_game *game, int x, int y)
+{
+	if (y == 0 && x == 0)
+		return (game->img_wall_left1);
+	else if (y == 0 && x == game->map.width - 1)
+		return (game->img_wall_right1);
+	else if (y == game->map.height - 1 && x == 0)
+		return (game->img_wall_left3);
+	else if (y == game->map.height - 1 && x == game->map.width - 1)
+		return (game->img_wall_right3);
+	else if (y == 0 && x < game->map.width - 1)
+		return (game->img_wall_center1);
+	else if (y < game->map.height - 1 && x == 0)
+		return (game->img_wall_left2);
+	else if (y == game->map.height - 1 && (x > 0 && x < game->map.width - 1))
+		return (game->img_wall_center2);
+	else if ((y > 0 && y < game->map.height - 1) && x == game->map.width - 1)
+		return (game->img_wall_right2);
+	return (game->img_obstacle);
+}
+
 int	render_map(t_game *game, int x, int y)
 {
 	if (game->map.design[y][x] == '1')
-		game->img = game->img_wall;
+		game->img = render_walls(game, x, y);
 	else if (game->map.design[y][x] == '0')
 		game->img = game->img_floor;
 	else if (game->map.design[y][x] == 'P')
 	{
-		if (game->map.design[game->exit_y][game->exit_x] == 'P')
+		if ((game->exit_y && game->exit_x != 0) && (game->map.design[game->exit_y][game->exit_x] == 'P'))
 			game->img = game->img_player2;
 		else
 			game->img = game->img_player;
