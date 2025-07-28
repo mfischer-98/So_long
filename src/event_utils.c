@@ -12,6 +12,26 @@
 
 #include "so_long.h"
 
+void	free_walls(t_game *game)
+{
+	if (game->img_wall_center1)
+		mlx_destroy_image(game->mlx, game->img_wall_center1);
+	if (game->img_wall_center2)
+		mlx_destroy_image(game->mlx, game->img_wall_center2);
+	if (game->img_wall_left1)
+		mlx_destroy_image(game->mlx, game->img_wall_left1);
+	if (game->img_wall_left2)
+		mlx_destroy_image(game->mlx, game->img_wall_left2);
+	if (game->img_wall_left3)
+		mlx_destroy_image(game->mlx, game->img_wall_left3);
+	if (game->img_wall_right1)
+		mlx_destroy_image(game->mlx, game->img_wall_right1);
+	if (game->img_wall_right2)
+		mlx_destroy_image(game->mlx, game->img_wall_right2);
+	if (game->img_wall_right3)
+		mlx_destroy_image(game->mlx, game->img_wall_right3);
+}
+
 void	free_images(t_game *game)
 {
 	if (game->img_floor)
@@ -26,13 +46,12 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_player2);
 	if (game->img_collectable)
 		mlx_destroy_image(game->mlx, game->img_collectable);
-	if (game->img_wall_center1)
-		mlx_destroy_image(game->mlx, game->img_wall_center1);
 }
 
 int	close_window(t_game *game)
 {
 	free_images(game);
+	free_walls(game);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free_map(&game->map);

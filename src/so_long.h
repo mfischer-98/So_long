@@ -117,6 +117,8 @@ int		render_map(t_game *game, int x, int y);
 int		handle_input(int keysym, t_game *game);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
+void	free_walls(t_game *game);
+void	free_walls(t_game *game);
 void	check_exit(t_game *game, int dir_x, int dir_y);
 void	move_right(t_game *game, int x, int y);
 void	move_left(t_game *game, int x, int y);
