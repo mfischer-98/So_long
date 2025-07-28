@@ -49,7 +49,7 @@ BONUS_SRC_PATH		= src_bonus
 BONUS_INC_PATH		= src_bonus
 BONUS_BUILD_PATH	= .build_bonus
 
-FILES	= main.c events.c images.c movements.c render_map.c check_map/check_map.c check_map/parsing_map.c check_map/check_map_utils.c check_map/valid_path.c
+FILES	= main.c event_utils.c images.c movements.c render_map.c check_map/check_map.c check_map/parsing_map.c check_map/check_map_utils.c check_map/valid_path.c
 
 SRC				= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)

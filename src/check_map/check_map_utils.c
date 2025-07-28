@@ -47,7 +47,7 @@ void	line_trim(char *str)
 	while (str[i])
 	{
 		if ((str[i] == '\r') && (str[i + 1] == '\n'))
-			str[i] = '\0';	
+			str[i] = '\0';
 		else if ((str[i] == '\n') && (str[i + 1] == '\0'))
 			str[i] = '\0';
 		i++;

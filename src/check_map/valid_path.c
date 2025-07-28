@@ -42,16 +42,9 @@ void	flood_fill(t_map *map, int x, int y)
 	if (map->design[y][x] == '1' || map->design[y][x] == 'F')
 		return ;
 	if (map->design[y][x] == 'C')
-	{
-		map->design[y][x] = 'F';
 		map->is_collectable -= 1;
-	}
 	if (map->design[y][x] == 'E')
-	{
-		map->design[y][x] = 'F';
 		map->is_exit -= 1;
-		return ;
-	}
 	map->design[y][x] = 'F';
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x + 1, y);

@@ -107,6 +107,7 @@ int		valid_exit(t_map *map, char *file);
 //Rendering
 int		load_images(t_game *game);
 int		load_walls(t_game *game, int res);
+int		load_extra_walls(t_game *game, int res);
 void	render_init(t_game *game, t_map *map, t_player *player);
 void	load_map(t_game *game);
 void	*render_walls(t_game *game, int x, int y);

@@ -12,6 +12,13 @@
 
 #include "so_long.h"
 
+int	reached_goal(t_game *game)
+{
+	if (game->map.is_collectable == game->player.collected)
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		game;
@@ -33,6 +40,7 @@ int	main(int argc, char **argv)
 		close_window(&game);
 		return (MALLOC_ERROR);
 	}
+	player.move_counter = 0;
 	render_init(&game, &map, &player);
 	mlx_hook(game.win, 17, 0, &close_window, &game);
 	mlx_key_hook(game.win, &handle_input, &game);

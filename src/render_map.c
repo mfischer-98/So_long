@@ -19,10 +19,17 @@ void	render_init(t_game *game, t_map *map, t_player *player)
 	game->img = NULL;
 	game->exit_x = 0;
 	game->exit_y = 0;
-	player->move_counter = 0;
-	player->collected = 0;
+	game->player.move_counter = 0;
+	game->player.collected = 0;
 	load_images(game);
 	load_map(game);
+}
+
+void	check_exit(t_game *game, int dir_x, int dir_y)
+{
+	game->exit_y = dir_y;
+	game->exit_x = dir_x;
+	game->map.design[dir_y][dir_x] = 'P';
 }
 
 void	load_map(t_game *game)
@@ -42,9 +49,9 @@ void	load_map(t_game *game)
 		y++;
 	}
 	if (game->exit_x && game->exit_y > 0
-		&& game->map.design[game->exit_y ][game->exit_x] != 'P')
+		&& game->map.design[game->exit_y][game->exit_x] != 'P')
 	{
-		game->map.design[game->exit_y ][game->exit_x] = 'E';
+		game->map.design[game->exit_y][game->exit_x] = 'E';
 		render_map(game, game->exit_x, game->exit_y);
 		game->exit_y = 0;
 		game->exit_x = 0;
@@ -80,7 +87,8 @@ int	render_map(t_game *game, int x, int y)
 		game->img = game->img_floor;
 	else if (game->map.design[y][x] == 'P')
 	{
-		if ((game->exit_y && game->exit_x != 0) && (game->map.design[game->exit_y][game->exit_x] == 'P'))
+		if ((game->exit_y && game->exit_x != 0)
+			&& (game->map.design[game->exit_y][game->exit_x] == 'P'))
 			game->img = game->img_player2;
 		else
 			game->img = game->img_player;
