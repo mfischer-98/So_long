@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   images_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 13:32:27 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/24 13:32:51 by mefische         ###   ########.fr       */
+/*   Created: 2025/07/28 14:23:06 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/28 14:23:06 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	load_extra_walls(t_game *game, int res)
 {

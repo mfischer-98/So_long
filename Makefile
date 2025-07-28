@@ -55,11 +55,12 @@ SRC				= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 HEADERS			= $(INC_PATH)/so_long.h
 
-#BONUS_FILES	= main_bonus.c
+BONUS_FILES	= main_bonus.c event_utils_bonus.c images_bonus.c movements_bonus.c render_map_bonus.c check_map/check_map_bonus.c check_map/parsing_map_bonus.c check_map/check_map_utils_bonus.c check_map/valid_path_bonus.c \
+				screen_text.c
 
-#BONUS_SRC					= $(addprefix $(BONUS_SRC_PATH)/, $(BONUS_FILES))
-#BONUS_OBJS					= $(BONUS_SRC:$(BONUS_SRC_PATH)/%.c=$(BONUS_BUILD_PATH)/%.o)
-#BONUS_HEADERS				= $(BONUS_INC_PATH)/so_long_bonus.h
+BONUS_SRC					= $(addprefix $(BONUS_SRC_PATH)/, $(BONUS_FILES))
+BONUS_OBJS					= $(BONUS_SRC:$(BONUS_SRC_PATH)/%.c=$(BONUS_BUILD_PATH)/%.o)
+BONUS_HEADERS				= $(BONUS_INC_PATH)/so_long_bonus.h
 
 LIBFT_PATH		= $(LIBS_PATH)/libft
 LIBFT_ARC		= $(LIBFT_PATH)/libft.a

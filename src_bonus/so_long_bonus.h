@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 10:30:56 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/09 10:30:56 by mefische         ###   ########.fr       */
+/*   Created: 2025/07/28 14:22:42 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/28 14:22:42 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../lib/mlx/mlx.h"
 # include <X11/keysym.h>
@@ -125,5 +125,8 @@ void	move_left(t_game *game, int x, int y);
 void	move_up(t_game *game, int x, int y);
 void	move_down(t_game *game, int x, int y);
 int		movements(t_game *game, int dir_x, int dir_y);
+
+// Text in screen
+void	str_message(t_game *game);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   render_map_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 11:22:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/24 13:31:39 by mefische         ###   ########.fr       */
+/*   Created: 2025/07/28 14:22:50 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/28 14:22:50 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	render_init(t_game *game, t_map *map, t_player *player)
 {
@@ -103,5 +103,6 @@ int	render_map(t_game *game, int x, int y)
 		return (1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
 		x * SIZE, y * SIZE);
+	str_message(game);
 	return (0);
 }
