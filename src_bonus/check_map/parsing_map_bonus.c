@@ -61,7 +61,7 @@ int	map_format(t_map *map)
 	int	width;
 
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->height - 1)
 		line_trim(map->design[i]);
 	i = 0;
 	width = line_len(map->design[i]);
