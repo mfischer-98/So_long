@@ -106,6 +106,7 @@ typedef struct s_game
 	int			exit_x;
 	int			exit_y;
 	int			num;
+	int			num_socks;
 	t_map		map;
 	t_player	player;
 	t_extra		extra;
@@ -141,6 +142,7 @@ void	load_map(t_game *game);
 void	*render_walls(t_game *game, int x, int y);
 int		render_map(t_game *game, int x, int y);
 void	*random_obstacles(t_game *game);
+void	*select_collectable(t_game *game);
 
 // Moves and Window
 int		handle_input(int keysym, t_game *game);

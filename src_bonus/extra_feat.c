@@ -85,7 +85,7 @@ void	*random_obstacles(t_game *game)
 		return (game->extra.img_box);
 	else if (game->num == 2)
 		return (game->extra.img_books);
-	else if (game->num == 3)
+	else if (game->num == 3 )
 		return (game->extra.img_low_chair);
 	else if (game->num == 4)
 		return (game->extra.img_plant);
@@ -99,5 +99,19 @@ void	*random_obstacles(t_game *game)
 		return (game->extra.img_chair);
 	else if (game->num == 9)
 		return (game->extra.img_lamp);
+	if (game->num > 9)
+		game->num = 0;
 	return (game->extra.img_box);
+}
+
+void	*select_collectable(t_game *game)
+{
+	game->num_socks += 1;
+	if (game->num_socks == 1)
+		return (game->img_collectable);
+	if (game->num_socks == 2)
+		return (game->extra.img_sock_dirty);
+	if (game->num_socks > 3)
+		game->num_socks = 0;
+	return (game->extra.img_sock_dots);
 }

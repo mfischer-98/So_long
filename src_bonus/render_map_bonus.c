@@ -20,6 +20,7 @@ void	render_init(t_game *game, t_map *map, t_player *player)
 	game->exit_x = 0;
 	game->exit_y = 0;
 	game->num = 0;
+	game->num_socks = 0;
 	game->player.move_counter = 0;
 	game->player.collected = 0;
 	load_images(game);
@@ -58,6 +59,7 @@ void	load_map(t_game *game)
 		game->exit_x = 0;
 	}
 	game->num = 0;
+	game->num_socks = 0;
 }
 
 void	*render_walls(t_game *game, int x, int y)
@@ -98,7 +100,7 @@ int	render_map(t_game *game, int x, int y)
 		game->player.y = y;
 	}
 	else if (game->map.design[y][x] == 'C')
-		game->img = game->img_collectable;
+		game->img = select_collectable(game);
 	else if (game->map.design[y][x] == 'E')
 		game->img = game->img_exit;
 	else
