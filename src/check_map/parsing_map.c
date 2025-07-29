@@ -84,8 +84,6 @@ int	map_format(t_map *map)
 	return (1);
 }
 
-/*Remember to add return 
-(free(map), 0) before exit*/
 int	parsing_map(int argc, char **argv, t_map *map)
 {
 	if (!check_args(argc))

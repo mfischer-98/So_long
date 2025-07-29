@@ -12,6 +12,28 @@
 
 #include "so_long_bonus.h"
 
+void	free_extra(t_game *game)
+{
+	if (game->extra.img_box)
+		mlx_destroy_image(game->mlx, game->extra.img_box);
+	if (game->extra.img_open_box)
+		mlx_destroy_image(game->mlx, game->extra.img_open_box);
+	if (game->extra.img_books)
+		mlx_destroy_image(game->mlx, game->extra.img_books);
+	if (game->extra.img_chair)
+		mlx_destroy_image(game->mlx, game->extra.img_chair);
+	if (game->extra.img_jar)
+		mlx_destroy_image(game->mlx, game->extra.img_jar);
+	if (game->extra.img_lamp)
+		mlx_destroy_image(game->mlx, game->extra.img_lamp);
+	if (game->extra.img_low_chair)
+		mlx_destroy_image(game->mlx, game->extra.img_low_chair);
+	if (game->extra.img_plant)
+		mlx_destroy_image(game->mlx, game->extra.img_plant);
+	if (game->extra.img_table)
+		mlx_destroy_image(game->mlx, game->extra.img_table);
+}
+
 void	free_walls(t_game *game)
 {
 	if (game->img_wall_center1)
@@ -36,8 +58,6 @@ void	free_images(t_game *game)
 {
 	if (game->img_floor)
 		mlx_destroy_image(game->mlx, game->img_floor);
-	if (game->img_obstacle)
-		mlx_destroy_image(game->mlx, game->img_obstacle);
 	if (game->img_player)
 		mlx_destroy_image(game->mlx, game->img_player);
 	if (game->img_exit)
@@ -46,12 +66,17 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_player2);
 	if (game->img_collectable)
 		mlx_destroy_image(game->mlx, game->img_collectable);
+	if (game->extra.img_sock_dirty)
+		mlx_destroy_image(game->mlx, game->extra.img_sock_dirty);
+	if (game->extra.img_sock_dots)
+		mlx_destroy_image(game->mlx, game->extra.img_sock_dots);
 }
 
 int	close_window(t_game *game)
 {
 	free_images(game);
 	free_walls(game);
+	free_extra(game);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free_map(&game->map);

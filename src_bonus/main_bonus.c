@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 
 	if (!parsing_map(argc, argv, &map))
 	{
-		free_map(&map);
+		if (map.design)
+			free_map(&map);
 		return (1);
 	}
 	game.mlx = mlx_init();

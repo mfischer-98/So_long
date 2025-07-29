@@ -19,6 +19,7 @@ void	render_init(t_game *game, t_map *map, t_player *player)
 	game->img = NULL;
 	game->exit_x = 0;
 	game->exit_y = 0;
+	game->num = 0;
 	game->player.move_counter = 0;
 	game->player.collected = 0;
 	load_images(game);
@@ -56,6 +57,7 @@ void	load_map(t_game *game)
 		game->exit_y = 0;
 		game->exit_x = 0;
 	}
+	game->num = 0;
 }
 
 void	*render_walls(t_game *game, int x, int y)
@@ -76,7 +78,7 @@ void	*render_walls(t_game *game, int x, int y)
 		return (game->img_wall_center2);
 	else if ((y > 0 && y < game->map.height - 1) && x == game->map.width - 1)
 		return (game->img_wall_right2);
-	return (game->img_obstacle);
+	return (random_obstacles(game));
 }
 
 int	render_map(t_game *game, int x, int y)

@@ -26,7 +26,17 @@
 # define PLAYER "textures/player.xpm"
 # define PLAYER2 "textures/player2.xpm"
 # define COLLECTABLE "textures/collectable1.xpm"
-# define OBSTACLE "textures/box.xpm"
+# define SOCK_DOTS "textures/collectable2.xpm"
+# define SOCK_DIRTY "textures/collectable3.xpm"
+# define BOX "textures/walls/box.xpm"
+# define BOOKS "textures/walls/books.xpm"
+# define OPEN_BOX "textures/walls/open_box.xpm"
+# define CHAIR "textures/walls/chair.xpm"
+# define JAR "textures/walls/jar.xpm"
+# define LAMP "textures/walls/lamp.xpm"
+# define LOW_CHAIR "textures/walls/low_chair.xpm"
+# define PLANT "textures/walls/plant.xpm"
+# define TABLE "textures/walls/table.xpm"
 # define WALL_LEFT1 "textures/walls/wall_topleft_corner.xpm"
 # define WALL_LEFT2 "textures/walls/wall_left.xpm"
 # define WALL_LEFT3 "textures/walls/wall_corner_downleft.xpm"
@@ -58,6 +68,21 @@ typedef struct s_player
 	int			collected;
 }			t_player;
 
+typedef struct s_extra
+{
+	void		*img_box;
+	void		*img_open_box;
+	void		*img_books;
+	void		*img_chair;
+	void		*img_jar;
+	void		*img_lamp;
+	void		*img_low_chair;
+	void		*img_plant;
+	void		*img_table;
+	void		*img_sock_dots;
+	void		*img_sock_dirty;
+}			t_extra;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -68,7 +93,6 @@ typedef struct s_game
 	void		*img_collectable;
 	void		*img_exit;
 	void		*img_floor;
-	void		*img_obstacle;
 	void		*img_wall_left1;
 	void		*img_wall_left2;
 	void		*img_wall_left3;
@@ -81,8 +105,10 @@ typedef struct s_game
 	int			img_y;
 	int			exit_x;
 	int			exit_y;
+	int			num;
 	t_map		map;
 	t_player	player;
+	t_extra		extra;
 }				t_game;
 
 // Map parsing
@@ -108,10 +134,13 @@ int		valid_exit(t_map *map, char *file);
 int		load_images(t_game *game);
 int		load_walls(t_game *game, int res);
 int		load_extra_walls(t_game *game, int res);
+int		load_obstacles(t_game *game, int res);
+int		load_extra_obstacles(t_game *game, int res);
 void	render_init(t_game *game, t_map *map, t_player *player);
 void	load_map(t_game *game);
 void	*render_walls(t_game *game, int x, int y);
 int		render_map(t_game *game, int x, int y);
+void	*random_obstacles(t_game *game);
 
 // Moves and Window
 int		handle_input(int keysym, t_game *game);
@@ -119,6 +148,7 @@ int		close_window(t_game *game);
 int		reached_goal(t_game *game);
 void	free_walls(t_game *game);
 void	free_walls(t_game *game);
+void	free_extra(t_game *game);
 void	check_exit(t_game *game, int dir_x, int dir_y);
 void	move_right(t_game *game, int x, int y);
 void	move_left(t_game *game, int x, int y);
