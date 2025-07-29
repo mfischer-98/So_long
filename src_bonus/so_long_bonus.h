@@ -66,7 +66,23 @@ typedef struct s_player
 	int			y;
 	int			move_counter;
 	int			collected;
+	t_sprite	*walk_down[3];
 }			t_player;
+
+typedef struct s_enemy
+{
+	int			x;
+	int			y;
+}			t_enemy;
+
+typedef struct s_sprite
+{
+	int		frame_count;
+	void	*walk_down1;
+	void	*walk_down2;
+	void	*walk_down3;
+	void	*walk_down4;
+}			t_sprite;
 
 typedef struct s_extra
 {
@@ -110,6 +126,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_extra		extra;
+	t_sprite	sprite;
 }				t_game;
 
 // Map parsing

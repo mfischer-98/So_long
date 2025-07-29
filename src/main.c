@@ -37,10 +37,7 @@ int	main(int argc, char **argv)
 	game.win = mlx_new_window(game.mlx, map.width * SIZE,
 			map.height * SIZE, "so_long");
 	if (!game.win)
-	{
-		close_window(&game);
-		return (MALLOC_ERROR);
-	}
+		return (close_window(&game), MALLOC_ERROR);
 	player.move_counter = 0;
 	render_init(&game, &map, &player);
 	mlx_hook(game.win, 17, 0, &close_window, &game);
