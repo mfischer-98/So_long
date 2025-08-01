@@ -12,10 +12,16 @@
 
 #include "so_long_bonus.h"
 
-int	reached_goal(t_game *game)
+int		game_loop(t_game *game)
 {
-	if (game->map.is_collectable == game->player.collected)
-		return (1);
+	if (game->player.is_moving)
+	{
+		if (game->player.is_moving == 4)
+			player_walk_down(game);
+		else
+			game->img_player = game->player.walk_down[0];
+	}
+	game->player.is_moving = 0;
 	return (0);
 }
 
@@ -41,7 +47,8 @@ int	main(int argc, char **argv)
 	player.move_counter = 0;
 	render_init(&game, &map, &player);
 	mlx_hook(game.win, 17, 0, &close_window, &game);
-	mlx_key_hook(game.win, &handle_input, &game);
+	mlx_key_hook(game.win, &handle_key_press, &game);
+	mlx_loop_hook(game.mlx, &game_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

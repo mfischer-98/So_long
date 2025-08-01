@@ -15,6 +15,7 @@
 
 # include "../lib/mlx/mlx.h"
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -64,9 +65,11 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	int			is_moving;
 	int			move_counter;
+	int			frame_count;
 	int			collected;
-	t_sprite	*walk_down[3];
+	void		*walk_down[3];
 }			t_player;
 
 typedef struct s_enemy
@@ -74,15 +77,6 @@ typedef struct s_enemy
 	int			x;
 	int			y;
 }			t_enemy;
-
-typedef struct s_sprite
-{
-	int		frame_count;
-	void	*walk_down1;
-	void	*walk_down2;
-	void	*walk_down3;
-	void	*walk_down4;
-}			t_sprite;
 
 typedef struct s_extra
 {
@@ -126,7 +120,6 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_extra		extra;
-	t_sprite	sprite;
 }				t_game;
 
 // Map parsing
@@ -162,7 +155,7 @@ void	*random_obstacles(t_game *game);
 void	*select_collectable(t_game *game);
 
 // Moves and Window
-int		handle_input(int keysym, t_game *game);
+int		handle_key_press(int keysym, t_game *game);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
 void	free_walls(t_game *game);
@@ -175,7 +168,11 @@ void	move_up(t_game *game, int x, int y);
 void	move_down(t_game *game, int x, int y);
 int		movements(t_game *game, int dir_x, int dir_y);
 
-// Text in screen
+// Text in screen and Animation
+int		game_loop(t_game *game);
 void	str_message(t_game *game);
+int		animation_sprite(t_game *game, int res);
+int		walk_down_sprite(t_game *game, int res);
+int		player_walk_down(t_game *game);
 
 #endif

@@ -12,6 +12,13 @@
 
 #include "so_long_bonus.h"
 
+int	reached_goal(t_game *game)
+{
+	if (game->map.is_collectable == game->player.collected)
+		return (1);
+	return (0);
+}
+
 void	free_extra(t_game *game)
 {
 	if (game->extra.img_box)
@@ -82,24 +89,4 @@ int	close_window(t_game *game)
 	free_map(&game->map);
 	free(game->mlx);
 	exit(1);
-}
-
-int	handle_input(int keysym, t_game *game)
-{
-	int	dir_x;
-	int	dir_y;
-
-	dir_x = game->player.x;
-	dir_y = game->player.y;
-	if (keysym == XK_Escape)
-		close_window(game);
-	else if (keysym == XK_Right)
-		move_right(game, dir_x, dir_y);
-	else if (keysym == XK_Left)
-		move_left(game, dir_x, dir_y);
-	else if (keysym == XK_Up)
-		move_up(game, dir_x, dir_y);
-	else if (keysym == XK_Down)
-		move_down(game, dir_x, dir_y);
-	return (0);
 }

@@ -63,6 +63,7 @@ int	load_images(t_game *game)
 	load_extra_walls(game, res);
 	load_obstacles(game, res);
 	load_extra_obstacles(game, res);
+	animation_sprite(game, res);
 	game->img_floor = mlx_xpm_file_to_image(game->mlx, FLOOR, &res, &res);
 	if (!game->img_floor)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
@@ -87,21 +88,21 @@ int	load_walk_sprite(t_game *game)
 	int	res;
 
 	res = 64;
-	game->sprite.walk_down1 = mlx_xpm_file_to_image(game->mlx,
+	game->player.walk_down[0] = mlx_xpm_file_to_image(game->mlx,
 			"textures/sprites/walk1.xpm", &res, &res);
-	if (!game->sprite.walk_down1)
+	if (!game->player.walk_down[0])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->sprite.walk_down2 = mlx_xpm_file_to_image(game->mlx,
+	game->player.walk_down[1] = mlx_xpm_file_to_image(game->mlx,
 			"textures/sprites/walk2.xpm", &res, &res);
-	if (!game->sprite.walk_down2)
+	if (!game->player.walk_down[1])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->sprite.walk_down3 = mlx_xpm_file_to_image(game->mlx,
+	game->player.walk_down[2] = mlx_xpm_file_to_image(game->mlx,
 			"textures/sprites/walk3.xpm", &res, &res);
-	if (!game->sprite.walk_down3)
+	if (!game->player.walk_down[2])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->sprite.walk_down4 = mlx_xpm_file_to_image(game->mlx,
+	game->player.walk_down[3] = mlx_xpm_file_to_image(game->mlx,
 			"textures/sprites/walk4.xpm", &res, &res);
-	if (!game->sprite.walk_down4)
+	if (!game->player.walk_down[3])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	return (0);
 }

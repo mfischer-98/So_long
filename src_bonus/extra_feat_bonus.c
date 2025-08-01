@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:56:20 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/29 16:57:45 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:51:04 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	*select_collectable(t_game *game)
 		return (game->img_collectable);
 	if (game->num_socks == 2)
 		return (game->extra.img_sock_dirty);
-	if (game->num_socks > 3)
+	if (game->num_socks > 2)
 		game->num_socks = 0;
 	return (game->extra.img_sock_dots);
 }

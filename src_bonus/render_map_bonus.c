@@ -22,6 +22,7 @@ void	render_init(t_game *game, t_map *map, t_player *player)
 	game->num = 0;
 	game->num_socks = 0;
 	game->player.move_counter = 0;
+	game->player.is_moving = 0;
 	game->player.collected = 0;
 	load_images(game);
 	load_map(game);
