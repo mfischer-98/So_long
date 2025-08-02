@@ -68,14 +68,23 @@ typedef struct s_player
 	int			is_moving;
 	int			move_counter;
 	int			frame_count;
+	int			anim_delay;
 	int			collected;
+	void		*idle[3];
 	void		*walk_down[3];
+	void		*walk_right[3];
+	void		*walk_left[3];
+	void		*walk_up[3];
+	void		*attacked[4];
 }			t_player;
 
 typedef struct s_enemy
 {
 	int			x;
 	int			y;
+	void		*idle[2];
+	void		*alert[3];
+	void		*attack[4];
 }			t_enemy;
 
 typedef struct s_extra
@@ -119,6 +128,7 @@ typedef struct s_game
 	int			num_socks;
 	t_map		map;
 	t_player	player;
+	t_enemy		enemy;
 	t_extra		extra;
 }				t_game;
 
@@ -147,7 +157,7 @@ int		load_walls(t_game *game, int res);
 int		load_extra_walls(t_game *game, int res);
 int		load_obstacles(t_game *game, int res);
 int		load_extra_obstacles(t_game *game, int res);
-void	render_init(t_game *game, t_map *map, t_player *player);
+void	render_init(t_game *game, t_map *map, t_player *player, t_enemy *enemy);
 void	load_map(t_game *game);
 void	*render_walls(t_game *game, int x, int y);
 int		render_map(t_game *game, int x, int y);
@@ -173,6 +183,20 @@ int		game_loop(t_game *game);
 void	str_message(t_game *game);
 int		animation_sprite(t_game *game, int res);
 int		walk_down_sprite(t_game *game, int res);
+int		walk_down_sprite(t_game *game, int res);
+int		walk_up_sprite(t_game *game, int res);
+int		walk_right_sprite(t_game *game, int res);
+int		walk_left_sprite(t_game *game, int res);
+int		player_idle_sprite(t_game *game, int res);
+int		player_attacked(t_game *game, int res);
+int		enemy_idle(t_game *game, int res);
+int		enemy_alert(t_game *game, int res);
+int		enemy_attack(t_game *game, int res);
+int		player_idle(t_game *game);
+int		player_walk_up(t_game *game);
 int		player_walk_down(t_game *game);
+int		player_walk_right(t_game *game);
+int		player_walk_left(t_game *game);
+int		render_position(t_game *game);
 
 #endif
