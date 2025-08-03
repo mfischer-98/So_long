@@ -63,6 +63,7 @@ void	load_map(t_game *game)
 	}
 	game->num = 0;
 	game->num_socks = 0;
+	str_message(game);
 }
 
 void	*render_walls(t_game *game, int x, int y)
@@ -103,13 +104,14 @@ int	render_map(t_game *game, int x, int y)
 		game->player.y = y;
 	}
 	else if (game->map.design[y][x] == 'C')
-		game->img = select_collectable(game);
+		game->img = select_collectable(game, x, y);
 	else if (game->map.design[y][x] == 'E')
 		game->img = game->img_exit;
+	else if (game->map.design[y][x] == 'N')
+		game->img = image_enemy(game, x, y);
 	else
 		return (1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
 		x * SIZE, y * SIZE);
-	str_message(game);
 	return (0);
 }

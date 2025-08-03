@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:56:20 by mefische          #+#    #+#             */
-/*   Updated: 2025/08/02 17:13:59 by mefische         ###   ########.fr       */
+/*   Updated: 2025/08/03 17:12:16 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,15 @@ void	*random_obstacles(t_game *game)
 	return (game->extra.img_box);
 }
 
-void	*select_collectable(t_game *game)
+void	*select_collectable(t_game *game, int x, int y)
 {
-	game->num_socks += 1;
+	game->num_socks = x + y;
 	
-	if (game->num_socks == 1)
+	if (game->num_socks % 2 == 0)
 		return (game->img_collectable);
-	if (game->num_socks == 2)
+	if (game->num_socks % 5 == 0)
 		return (game->extra.img_sock_dirty);
-	if (game->num_socks > 2)
+	if (game->num_socks % 3 == 0)
 		game->num_socks = 0;
 	return (game->extra.img_sock_dots);
 }

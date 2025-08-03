@@ -28,7 +28,7 @@ int		game_loop(t_game *game)
 	else
 		player_idle(game);
 	render_position(game);
-	//game->player.is_moving = 0;
+	enemy_animation(game);
 	return (0);
 }
 

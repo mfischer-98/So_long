@@ -41,6 +41,7 @@ int	player_attacked(t_game *game, int res)
 
 int	enemy_idle(t_game *game, int res)
 {
+	init_enemy(game);
 	game->enemy.idle[0] = mlx_xpm_file_to_image
 		(game->mlx, "textures/sprites_enemy/cat_idle1.xpm", &res, &res);
 	if (!game->enemy.idle[0])

@@ -57,7 +57,7 @@ int	check_characters(t_map *map)
 		{
 			if (map->design[y][x] != 'P' && map->design[y][x] != 'E'
 				&& map->design[y][x] != 'C' && map->design[y][x] != '1'
-					&& map->design[y][x] != '0')
+					&& map->design[y][x] != '0' && map->design[y][x] != 'N')
 			{
 				ft_printf("Error\nInvalid map characters :(\n");
 				return (0);
