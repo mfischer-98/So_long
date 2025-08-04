@@ -55,7 +55,6 @@ void	move_left(t_game *game, int x, int y)
 	{
 		game->map.design[y][x] = '0';
 		game->player.is_moving = 2;
-
 	}
 }
 

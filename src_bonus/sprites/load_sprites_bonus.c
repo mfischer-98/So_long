@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_sprites_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/04 16:45:06 by mefische          #+#    #+#             */
+/*   Updated: 2025/08/04 16:45:06 by mefische         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long_bonus.h"
 
 int	animation_sprite(t_game *game, int res)
@@ -13,7 +25,6 @@ int	animation_sprite(t_game *game, int res)
 	enemy_attack(game, res);
 	return (0);
 }
-
 
 int	walk_down_sprite(t_game *game, int res)
 {

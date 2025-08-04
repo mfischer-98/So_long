@@ -207,13 +207,13 @@ int		player_walk_right(t_game *game);
 int		player_walk_left(t_game *game);
 int		render_position_player(t_game *game);
 int		enemy_idle_anim(t_game *game);
-int 	alert_enemy_anim(t_game *game);
-int 	enemy_attack_anim(t_game *game, int side);
+int		alert_enemy_anim(t_game *game);
+int		enemy_attack_anim(t_game *game, int side);
 void	player_move(t_game *game);
 void	attack_left_anim(t_game *game);
 void	attack_right_anim(t_game *game);
 void	*image_enemy(t_game *game, int x, int y);
-int 	is_near(t_game *game);
+int		is_near(t_game *game);
 void	game_over(t_game *game);
 void	player_attacked_anim(t_game *game);
 
