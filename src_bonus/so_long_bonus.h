@@ -23,6 +23,7 @@
 
 # define MALLOC_ERROR 1
 # define SIZE 64
+# define ANIM_SPEED 200
 # define FLOOR "textures/floor.xpm"
 # define PLAYER "textures/player.xpm"
 # define PLAYER2 "textures/player2.xpm"
@@ -82,9 +83,11 @@ typedef struct s_enemy
 {
 	int			x;
 	int			y;
-	int			state;
+	int			attack_count;
+	int			attack_delay;
 	int			anim_frame;
 	int			anim_delay;
+	int			attack_frame_counter;
 	void		*img_enemy;
 	void		*idle[2];
 	void		*alert[3];
@@ -130,6 +133,7 @@ typedef struct s_game
 	int			exit_y;
 	int			num;
 	int			num_socks;
+	int			game_over;
 	t_map		map;
 	t_player	player;
 	t_enemy		enemy;
@@ -156,7 +160,6 @@ void	flood_fill(t_map *map, int x, int y);
 int		valid_exit(t_map *map, char *file);
 
 //Rendering
-void	init_enemy(t_game *game);
 int		load_images(t_game *game);
 int		load_walls(t_game *game, int res);
 int		load_extra_walls(t_game *game, int res);
@@ -202,13 +205,16 @@ int		player_walk_up(t_game *game);
 int		player_walk_down(t_game *game);
 int		player_walk_right(t_game *game);
 int		player_walk_left(t_game *game);
-int		render_position(t_game *game);
+int		render_position_player(t_game *game);
 int		enemy_idle_anim(t_game *game);
 int 	alert_enemy_anim(t_game *game);
 int 	enemy_attack_anim(t_game *game, int side);
+void	player_move(t_game *game);
 void	attack_left_anim(t_game *game);
 void	attack_right_anim(t_game *game);
 void	*image_enemy(t_game *game, int x, int y);
-int		enemy_animation(t_game *game);
+int 	is_near(t_game *game);
+void	game_over(t_game *game);
+void	player_attacked_anim(t_game *game);
 
 #endif

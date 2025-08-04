@@ -8,6 +8,7 @@
 		"string_view": "c",
 		"span": "c",
 		"libft.h": "c",
-		"so_long_bonus.h": "c"
+		"so_long_bonus.h": "c",
+		"mlx_int.h": "c"
 	}
 }

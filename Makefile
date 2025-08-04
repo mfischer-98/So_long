@@ -144,7 +144,7 @@ get_mlx:
 
 #BONUS RULES
 
-bonus: all $(BONUS_BUILD_PATH) $(NAME_BONUS)	## Compile
+bonus: $(BONUS_BUILD_PATH) $(NAME_BONUS)	## Compile
 
 $(NAME_BONUS): $(BONUS_BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(BONUS_OBJS)
 	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) mandatory version$(D)"

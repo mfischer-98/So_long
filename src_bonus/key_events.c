@@ -9,13 +9,13 @@ int	handle_key_press(int keysym, t_game *game)
 	dir_y = game->player.y;
 	if (keysym == XK_Escape)
 		close_window(game);
-	else if (keysym == XK_Right)
+	else if (keysym == XK_Right || keysym == XK_d)
 		move_right(game, dir_x, dir_y);
-	else if (keysym == XK_Left)
+	else if (keysym == XK_Left || keysym == XK_a)
 		move_left(game, dir_x, dir_y);
-	else if (keysym == XK_Up)
+	else if (keysym == XK_Up || keysym == XK_w)
 		move_up(game, dir_x, dir_y);
-	else if (keysym == XK_Down)
+	else if (keysym == XK_Down || keysym == XK_s)
 		move_down(game, dir_x, dir_y);
 	return (0);
 }
