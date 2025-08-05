@@ -21,7 +21,7 @@ int	reached_goal(t_game *game)
 
 int	close_window(t_game *game)
 {
-	mlx_clear_window(game->mlx, game->win);
+	//mlx_clear_window(game->mlx, game->win);
 	free_images(game);
 	free_walls(game);
 	free_extra(game);

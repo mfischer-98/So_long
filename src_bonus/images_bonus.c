@@ -67,7 +67,7 @@ int	load_images(t_game *game)
 	game->img_floor = mlx_xpm_file_to_image(game->mlx, FLOOR, &res, &res);
 	if (!game->img_floor)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->img_player = mlx_xpm_file_to_image(game->mlx, PLAYER, &res, &res);
+	game->img_player = game->player.idle[0];
 	if (!game->img_player)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	game->img_player2 = mlx_xpm_file_to_image(game->mlx, PLAYER2, &res, &res);

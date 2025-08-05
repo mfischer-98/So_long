@@ -217,6 +217,7 @@ void	player_move(t_game *game);
 void	attack_left_anim(t_game *game);
 void	attack_right_anim(t_game *game);
 void	*image_enemy(t_game *game, int x, int y);
+void	*image_player(t_game *game, int x, int y);
 int		is_near(t_game *game);
 void	game_over(t_game *game);
 void	player_attacked_anim(t_game *game);
