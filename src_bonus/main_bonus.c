@@ -24,7 +24,7 @@ void	game_over(t_game *game)
 	while (++wait < 1000000)
 		mlx_string_put(game->mlx, game->win, middle_w,
 			middle_h, 0xFFFFFF, "YOU LOST :(");
-	ft_printf("GAME OVER\nStay away from the evil cat next time :(\n");
+	ft_printf("GAME OVER\nStay away from cats next time :(\n");
 	close_window(game);
 }
 
@@ -34,8 +34,6 @@ int	game_loop(t_game *game)
 		player_move(game);
 	else
 		player_idle(game);
-	if (game->player.x == game->enemy.x && game->player.y == game->enemy.y)
-		game_over(game);
 	if (++game->enemy.anim_delay >= ANIM_SPEED)
 	{
 		game->enemy.anim_delay = 0;
@@ -44,10 +42,7 @@ int	game_loop(t_game *game)
 	if (game->game_over)
 		player_attacked_anim(game);
 	else
-	{
-		mlx_clear_window(game->mlx, game->win);
 		load_map(game);
-	}
 	return (0);
 }
 

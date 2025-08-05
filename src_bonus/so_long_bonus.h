@@ -21,9 +21,9 @@
 # include <stdio.h>
 # include "../lib/libft/libft.h"
 
-# define MALLOC_ERROR 1
+# define MALLOC_ERROR 1//update player */
 # define SIZE 64
-# define ANIM_SPEED 200
+# define ANIM_SPEED 100
 # define FLOOR "textures/floor.xpm"
 # define PLAYER "textures/player.xpm"
 # define PLAYER2 "textures/player2.xpm"
@@ -176,6 +176,7 @@ void	*select_collectable(t_game *game, int x, int y);
 int		handle_key_press(int keysym, t_game *game);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
+void	free_images(t_game *game);
 void	free_walls(t_game *game);
 void	free_walls(t_game *game);
 void	free_extra(t_game *game);
@@ -185,6 +186,9 @@ void	move_left(t_game *game, int x, int y);
 void	move_up(t_game *game, int x, int y);
 void	move_down(t_game *game, int x, int y);
 int		movements(t_game *game, int dir_x, int dir_y);
+void	free_sprite(t_game *game, void **sprite, int i);
+void	free_player(t_game *game);
+void	free_enemy(t_game *game);
 
 // Text in screen and Animation
 int		game_loop(t_game *game);

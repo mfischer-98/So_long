@@ -32,10 +32,8 @@ void	*image_enemy(t_game *game, int x, int y)
 
 	game->enemy.x = x;
 	game->enemy.y = y;
-	player_left = (game->player.x == game->enemy.x - 1
-			&& game->player.y == game->enemy.y);
-	player_right = (game->player.x == game->enemy.x + 1
-			&& game->player.y == game->enemy.y);
+	player_left = game->map.design[game->player.y][game->player.x + 1] == 'N';
+	player_right = game->map.design[game->player.y][game->player.x - 1] == 'N';
 	player_near = is_near(game);
 	if (player_near)
 		alert_enemy_anim(game);

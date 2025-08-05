@@ -56,7 +56,8 @@ OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 HEADERS			= $(INC_PATH)/so_long.h
 
 BONUS_FILES	= main_bonus.c event_utils_bonus.c images_bonus.c movements_bonus.c render_map_bonus.c check_map/check_map_bonus.c check_map/parsing_map_bonus.c check_map/check_map_utils_bonus.c check_map/valid_path_bonus.c \
-				extra_feat_bonus.c key_events_bonus.c sprites/load_sprites_bonus.c sprites/sprite_loop_bonus.c sprites/extra_sprites_bonus.c sprites/render_position_bonus.c sprites/enemy_sprite_loop_bonus.c
+				extra_feat_bonus.c key_events_bonus.c sprites/load_sprites_bonus.c sprites/sprite_loop_bonus.c sprites/extra_sprites_bonus.c sprites/render_position_bonus.c sprites/enemy_sprite_loop_bonus.c \
+				sprites/free_sprites_bonus.c
 
 BONUS_SRC					= $(addprefix $(BONUS_SRC_PATH)/, $(BONUS_FILES))
 BONUS_OBJS					= $(BONUS_SRC:$(BONUS_SRC_PATH)/%.c=$(BONUS_BUILD_PATH)/%.o)

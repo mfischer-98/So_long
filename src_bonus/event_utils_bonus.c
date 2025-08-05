@@ -19,6 +19,21 @@ int	reached_goal(t_game *game)
 	return (0);
 }
 
+int	close_window(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->win);
+	free_images(game);
+	free_walls(game);
+	free_extra(game);
+	free_player(game);
+	free_enemy(game);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free_map(&game->map);
+	free(game->mlx);
+	exit(1);
+}
+
 void	free_extra(t_game *game)
 {
 	if (game->extra.img_box)
@@ -65,8 +80,6 @@ void	free_images(t_game *game)
 {
 	if (game->img_floor)
 		mlx_destroy_image(game->mlx, game->img_floor);
-	if (game->img_player)
-		mlx_destroy_image(game->mlx, game->img_player);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
 	if (game->img_player2)
@@ -77,16 +90,4 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->extra.img_sock_dirty);
 	if (game->extra.img_sock_dots)
 		mlx_destroy_image(game->mlx, game->extra.img_sock_dots);
-}
-
-int	close_window(t_game *game)
-{
-	free_images(game);
-	free_walls(game);
-	free_extra(game);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free_map(&game->map);
-	free(game->mlx);
-	exit(1);
 }

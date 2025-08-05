@@ -60,6 +60,8 @@ void	move_left(t_game *game, int x, int y)
 
 void	move_up(t_game *game, int x, int y)
 {
+	if (game->map.design[game->player.y - 1][game->player.x] == 'N')
+		game_over(game);
 	if (movements(game, x, y - 1))
 	{
 		game->map.design[y][x] = '0';
@@ -69,6 +71,8 @@ void	move_up(t_game *game, int x, int y)
 
 void	move_down(t_game *game, int x, int y)
 {
+	if (game->map.design[game->player.y + 1][game->player.x] == 'N')
+		game_over(game);
 	if (movements(game, x, y + 1))
 	{
 		game->map.design[y][x] = '0';

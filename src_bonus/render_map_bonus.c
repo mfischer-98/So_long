@@ -22,6 +22,7 @@ void	render_init(t_game *game, t_map *map, t_player *player, t_enemy *enemy)
 	game->exit_y = 0;
 	game->num = 0;
 	game->num_socks = 0;
+	game->game_over = 0;
 	game->player.move_counter = 0;
 	game->player.frame_count = 0;
 	game->player.anim_delay = 0;

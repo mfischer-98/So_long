@@ -100,9 +100,5 @@ int	load_walk_sprite(t_game *game)
 			"textures/sprites/walk3.xpm", &res, &res);
 	if (!game->player.walk_down[2])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->player.walk_down[3] = mlx_xpm_file_to_image(game->mlx,
-			"textures/sprites/walk4.xpm", &res, &res);
-	if (!game->player.walk_down[3])
-		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	return (0);
 }
