@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include "../lib/libft/libft.h"
 
-# define MALLOC_ERROR 1//update player */
+# define MALLOC_ERROR 1
 # define SIZE 64
 # define ANIM_SPEED 100
 # define FLOOR "textures/floor.xpm"
@@ -169,6 +169,8 @@ void	render_init(t_game *game, t_map *map, t_player *player, t_enemy *enemy);
 void	load_map(t_game *game);
 void	*render_walls(t_game *game, int x, int y);
 int		render_map(t_game *game, int x, int y);
+void	render_player(t_game *game);
+void	render_enemy(t_game *game);
 void	*random_obstacles(t_game *game);
 void	*select_collectable(t_game *game, int x, int y);
 

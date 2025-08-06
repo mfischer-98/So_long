@@ -46,7 +46,10 @@ int	game_loop(t_game *game)
 	if (game->game_over)
 		player_attacked_anim(game);
 	else
-		load_map(game);
+	{
+		render_player(game);
+		render_enemy(game);
+	}
 	return (0);
 }
 

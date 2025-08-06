@@ -37,13 +37,6 @@ void	render_init(t_game *game, t_map *map, t_player *player, t_enemy *enemy)
 	load_map(game);
 }
 
-void	check_exit(t_game *game, int dir_x, int dir_y)
-{
-	game->exit_y = dir_y;
-	game->exit_x = dir_x;
-	game->map.design[dir_y][dir_x] = 'P';
-}
-
 void	load_map(t_game *game)
 {
 	int	x;
@@ -121,4 +114,17 @@ int	render_map(t_game *game, int x, int y)
 	mlx_put_image_to_window(game->mlx, game->win, game->img,
 		x * SIZE, y * SIZE);
 	return (0);
+}
+
+void	render_player(t_game *game)
+{
+	render_map(game, game->player.x,  game->player.y);
+	if (game->exit_x && game->exit_y > 0
+		&& game->map.design[game->exit_y][game->exit_x] != 'P')
+	{
+		game->map.design[game->exit_y][game->exit_x] = 'E';
+		render_map(game, game->exit_x, game->exit_y);
+		game->exit_y = 0;
+		game->exit_x = 0;
+	}
 }

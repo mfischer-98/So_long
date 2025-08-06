@@ -75,10 +75,10 @@ int	check_min_characters(t_map *map)
 	int	y;
 
 	y = 0;
-	while (y < map->height - 1)
+	while (y < map->height)
 	{
 		x = 0;
-		while (x < map->width - 1)
+		while (x < map->width)
 		{
 			if (map->design[y][x] == 'C')
 				map->is_collectable++;
@@ -104,10 +104,10 @@ int	check_walls(t_map *map)
 	int	y;
 
 	y = 0;
-	while (y < map->height - 1)
+	while (y < map->height)
 	{
 		x = 0;
-		while (x < map->width - 1)
+		while (x < map->width)
 		{
 			if (map->design[y][0] != '1')
 				return (0);

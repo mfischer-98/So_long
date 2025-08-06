@@ -44,31 +44,47 @@ int	movements(t_game *game, int dir_x, int dir_y)
 void	move_right(t_game *game, int x, int y)
 {
 	if (movements(game, x + 1, y))
+	{
 		game->map.design[y][x] = '0';
-	mlx_clear_window(game->mlx, game->win);
-	load_map(game);
+		render_map(game, x, y);
+		render_player(game);
+	}
+	// mlx_clear_window(game->mlx, game->win);
+	// load_map(game);
 }
 
 void	move_left(t_game *game, int x, int y)
 {
 	if (movements(game, x - 1, y))
+	{
 		game->map.design[y][x] = '0';
-	mlx_clear_window(game->mlx, game->win);
-	load_map(game);
+		render_map(game, x, y);
+		render_player(game);
+	}
+	// mlx_clear_window(game->mlx, game->win);
+	// load_map(game);
 }
 
 void	move_up(t_game *game, int x, int y)
 {
 	if (movements(game, x, y - 1))
+	{
 		game->map.design[y][x] = '0';
-	mlx_clear_window(game->mlx, game->win);
-	load_map(game);
+		render_map(game, x, y);
+		render_player(game);
+	}
+	// mlx_clear_window(game->mlx, game->win);
+	// load_map(game);
 }
 
 void	move_down(t_game *game, int x, int y)
 {
 	if (movements(game, x, y + 1))
+	{
 		game->map.design[y][x] = '0';
-	mlx_clear_window(game->mlx, game->win);
-	load_map(game);
+		render_map(game, x, y);
+		render_player(game);
+	}
+	// mlx_clear_window(game->mlx, game->win);
+	// load_map(game);
 }

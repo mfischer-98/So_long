@@ -69,3 +69,26 @@ int	is_near(t_game *game)
 	}
 	return (0);
 }
+
+void	render_enemy(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			if (game->map.design[y][x] == 'N')
+			{
+				render_map(game, x, y);
+				game->enemy.x = x;
+				game->enemy.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}

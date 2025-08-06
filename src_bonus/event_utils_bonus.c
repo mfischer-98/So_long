@@ -12,16 +12,8 @@
 
 #include "so_long_bonus.h"
 
-int	reached_goal(t_game *game)
-{
-	if (game->map.is_collectable == game->player.collected)
-		return (1);
-	return (0);
-}
-
 int	close_window(t_game *game)
 {
-	//mlx_clear_window(game->mlx, game->win);
 	free_images(game);
 	free_walls(game);
 	free_extra(game);

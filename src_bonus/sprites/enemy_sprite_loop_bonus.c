@@ -53,8 +53,8 @@ void	player_attacked_anim(t_game *game)
 	game->enemy.img_enemy = game->enemy.attack[frame];
 	game->img_player = game->player.attacked[frame];
 	game->enemy.attack_frame_counter++;
-	mlx_clear_window(game->mlx, game->win);
-	load_map(game);
+	render_player(game);
+	render_enemy(game);
 	if (game->enemy.attack_frame_counter >= 28)
-	game_over(game);
+		game_over(game);
 }

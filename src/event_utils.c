@@ -12,6 +12,43 @@
 
 #include "so_long.h"
 
+void	check_exit(t_game *game, int dir_x, int dir_y)
+{
+	game->exit_y = dir_y;
+	game->exit_x = dir_x;
+	game->map.design[dir_y][dir_x] = 'P';
+}
+
+int	close_window(t_game *game)
+{
+	free_images(game);
+	free_walls(game);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free_map(&game->map);
+	free(game->mlx);
+	exit(1);
+}
+
+int	handle_input(int keysym, t_game *game)
+{
+	int	dir_x;
+	int	dir_y;
+
+	dir_x = game->player.x;
+	dir_y = game->player.y;
+	if (keysym == XK_Escape)
+		close_window(game);
+	else if (keysym == XK_Right)
+		move_right(game, dir_x, dir_y);
+	else if (keysym == XK_Left)
+		move_left(game, dir_x, dir_y);
+	else if (keysym == XK_Up)
+		move_up(game, dir_x, dir_y);
+	else if (keysym == XK_Down)
+		move_down(game, dir_x, dir_y);
+	return (0);
+}
 void	free_walls(t_game *game)
 {
 	if (game->img_wall_center1)
@@ -46,35 +83,4 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_player2);
 	if (game->img_collectable)
 		mlx_destroy_image(game->mlx, game->img_collectable);
-}
-
-int	close_window(t_game *game)
-{
-	free_images(game);
-	free_walls(game);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free_map(&game->map);
-	free(game->mlx);
-	exit(1);
-}
-
-int	handle_input(int keysym, t_game *game)
-{
-	int	dir_x;
-	int	dir_y;
-
-	dir_x = game->player.x;
-	dir_y = game->player.y;
-	if (keysym == XK_Escape)
-		close_window(game);
-	else if (keysym == XK_Right)
-		move_right(game, dir_x, dir_y);
-	else if (keysym == XK_Left)
-		move_left(game, dir_x, dir_y);
-	else if (keysym == XK_Up)
-		move_up(game, dir_x, dir_y);
-	else if (keysym == XK_Down)
-		move_down(game, dir_x, dir_y);
-	return (0);
 }
