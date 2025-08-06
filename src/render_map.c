@@ -101,13 +101,7 @@ int	render_map(t_game *game, int x, int y)
 
 void	render_player(t_game *game)
 {
-	int	x;
-	int	y;
-
-	x = game->player.x;
-	y = game->player.y;
-
-	render_map(game, x, y);
+	render_map(game, game->player.x, game->player.y);
 	if (game->exit_x && game->exit_y > 0
 		&& game->map.design[game->exit_y][game->exit_x] != 'P')
 	{

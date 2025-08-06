@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:56:20 by mefische          #+#    #+#             */
-/*   Updated: 2025/08/06 15:59:26 by mefische         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:32:15 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	load_extra_obstacles(t_game *game, int res)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	game->img_sock_dots = mlx_xpm_file_to_image
 		(game->mlx, SOCK_DOTS, &res, &res);
-	if (!game->img_sock_dots )
+	if (!game->img_sock_dots)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	game->img_sock_dirty = mlx_xpm_file_to_image
 		(game->mlx, SOCK_DIRTY, &res, &res);
@@ -96,7 +96,7 @@ void	*random_obstacles(t_game *game)
 	int	num;
 
 	num = rand() % 9;
-	return(game->img_obstacles[num]);
+	return (game->img_obstacles[num]);
 }
 
 void	*select_collectable(t_game *game, int x, int y)

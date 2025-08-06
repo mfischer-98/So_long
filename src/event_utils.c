@@ -49,6 +49,7 @@ int	handle_input(int keysym, t_game *game)
 		move_down(game, dir_x, dir_y);
 	return (0);
 }
+
 void	free_walls(t_game *game)
 {
 	if (game->img_wall_center1)
