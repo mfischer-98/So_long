@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:56:20 by mefische          #+#    #+#             */
-/*   Updated: 2025/08/04 16:34:15 by mefische         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:59:26 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,82 +39,64 @@ void	str_message(t_game *game)
 
 int	load_obstacles(t_game *game, int res)
 {
-	game->extra.img_box = mlx_xpm_file_to_image
+	game->img_obstacles[0] = mlx_xpm_file_to_image
 		(game->mlx, BOX, &res, &res);
-	if (!game->extra.img_box)
+	if (!game->img_obstacles[0])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_open_box = mlx_xpm_file_to_image
+	game->img_obstacles[1] = mlx_xpm_file_to_image
 		(game->mlx, OPEN_BOX, &res, &res);
-	if (!game->extra.img_open_box)
+	if (!game->img_obstacles[1])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_books = mlx_xpm_file_to_image
+	game->img_obstacles[2] = mlx_xpm_file_to_image
 		(game->mlx, BOOKS, &res, &res);
-	if (!game->extra.img_books)
+	if (!game->img_obstacles[2])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_chair = mlx_xpm_file_to_image
+	game->img_obstacles[3] = mlx_xpm_file_to_image
 		(game->mlx, CHAIR, &res, &res);
-	if (!game->extra.img_chair)
+	if (!game->img_obstacles[3])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_jar = mlx_xpm_file_to_image
+	game->img_obstacles[4] = mlx_xpm_file_to_image
 		(game->mlx, JAR, &res, &res);
-	if (!game->extra.img_jar)
+	if (!game->img_obstacles[4])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_lamp = mlx_xpm_file_to_image
+	game->img_obstacles[5] = mlx_xpm_file_to_image
 		(game->mlx, LAMP, &res, &res);
-	if (!game->extra.img_lamp)
+	if (!game->img_obstacles[5])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	return (0);
 }
 
 int	load_extra_obstacles(t_game *game, int res)
 {
-	game->extra.img_low_chair = mlx_xpm_file_to_image
+	game->img_obstacles[6] = mlx_xpm_file_to_image
 		(game->mlx, LOW_CHAIR, &res, &res);
-	if (!game->extra.img_low_chair)
+	if (!game->img_obstacles[6])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_plant = mlx_xpm_file_to_image
+	game->img_obstacles[7] = mlx_xpm_file_to_image
 		(game->mlx, PLANT, &res, &res);
-	if (!game->extra.img_plant)
+	if (!game->img_obstacles[7])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_table = mlx_xpm_file_to_image
+	game->img_obstacles[8] = mlx_xpm_file_to_image
 		(game->mlx, TABLE, &res, &res);
-	if (!game->extra.img_table)
+	if (!game->img_obstacles[8])
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_sock_dots = mlx_xpm_file_to_image
+	game->img_sock_dots = mlx_xpm_file_to_image
 		(game->mlx, SOCK_DOTS, &res, &res);
-	if (!game->extra.img_sock_dots)
+	if (!game->img_sock_dots )
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
-	game->extra.img_sock_dirty = mlx_xpm_file_to_image
+	game->img_sock_dirty = mlx_xpm_file_to_image
 		(game->mlx, SOCK_DIRTY, &res, &res);
-	if (!game->extra.img_sock_dirty)
+	if (!game->img_sock_dirty)
 		return (ft_printf("Error\nFailed image.\n"), close_window(game), 1);
 	return (0);
 }
 
 void	*random_obstacles(t_game *game)
 {
-	game->num += 1;
-	if (game->num == 1)
-		return (game->extra.img_box);
-	else if (game->num == 2)
-		return (game->extra.img_books);
-	else if (game->num == 3)
-		return (game->extra.img_low_chair);
-	else if (game->num == 4)
-		return (game->extra.img_plant);
-	else if (game->num == 5)
-		return (game->extra.img_open_box);
-	else if (game->num == 6)
-		return (game->extra.img_jar);
-	else if (game->num == 7)
-		return (game->extra.img_table);
-	else if (game->num == 8)
-		return (game->extra.img_chair);
-	else if (game->num == 9)
-		return (game->extra.img_lamp);
-	if (game->num > 9)
-		game->num = 0;
-	return (game->extra.img_box);
+	int	num;
+
+	num = rand() % 9;
+	return(game->img_obstacles[num]);
 }
 
 void	*select_collectable(t_game *game, int x, int y)
@@ -123,8 +105,8 @@ void	*select_collectable(t_game *game, int x, int y)
 	if (game->num_socks % 2 == 0)
 		return (game->img_collectable);
 	if (game->num_socks % 5 == 0)
-		return (game->extra.img_sock_dirty);
+		return (game->img_sock_dirty);
 	if (game->num_socks % 3 == 0)
 		game->num_socks = 0;
-	return (game->extra.img_sock_dots);
+	return (game->img_sock_dots);
 }

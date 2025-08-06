@@ -94,21 +94,6 @@ typedef struct s_enemy
 	void		*attack[4];
 }			t_enemy;
 
-typedef struct s_extra
-{
-	void		*img_box;
-	void		*img_open_box;
-	void		*img_books;
-	void		*img_chair;
-	void		*img_jar;
-	void		*img_lamp;
-	void		*img_low_chair;
-	void		*img_plant;
-	void		*img_table;
-	void		*img_sock_dots;
-	void		*img_sock_dirty;
-}			t_extra;
-
 typedef struct s_game
 {
 	void		*mlx;
@@ -117,6 +102,8 @@ typedef struct s_game
 	void		*img_player;
 	void		*img_player2;
 	void		*img_collectable;
+	void		*img_sock_dots;
+	void		*img_sock_dirty;
 	void		*img_exit;
 	void		*img_floor;
 	void		*img_wall_left1;
@@ -127,6 +114,7 @@ typedef struct s_game
 	void		*img_wall_right3;
 	void		*img_wall_center1;
 	void		*img_wall_center2;
+	void		*img_obstacles[9];
 	int			img_x;
 	int			img_y;
 	int			exit_x;
@@ -137,7 +125,6 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_enemy		enemy;
-	t_extra		extra;
 }				t_game;
 
 // Map parsing

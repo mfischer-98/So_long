@@ -28,24 +28,24 @@ int	close_window(t_game *game)
 
 void	free_extra(t_game *game)
 {
-	if (game->extra.img_box)
-		mlx_destroy_image(game->mlx, game->extra.img_box);
-	if (game->extra.img_open_box)
-		mlx_destroy_image(game->mlx, game->extra.img_open_box);
-	if (game->extra.img_books)
-		mlx_destroy_image(game->mlx, game->extra.img_books);
-	if (game->extra.img_chair)
-		mlx_destroy_image(game->mlx, game->extra.img_chair);
-	if (game->extra.img_jar)
-		mlx_destroy_image(game->mlx, game->extra.img_jar);
-	if (game->extra.img_lamp)
-		mlx_destroy_image(game->mlx, game->extra.img_lamp);
-	if (game->extra.img_low_chair)
-		mlx_destroy_image(game->mlx, game->extra.img_low_chair);
-	if (game->extra.img_plant)
-		mlx_destroy_image(game->mlx, game->extra.img_plant);
-	if (game->extra.img_table)
-		mlx_destroy_image(game->mlx, game->extra.img_table);
+	if (game->img_obstacles[0])
+		mlx_destroy_image(game->mlx, game->img_obstacles[0]);
+	if (game->img_obstacles[1])
+		mlx_destroy_image(game->mlx, game->img_obstacles[1]);
+	if (game->img_obstacles[2])
+		mlx_destroy_image(game->mlx, game->img_obstacles[2]);
+	if (game->img_obstacles[3])
+		mlx_destroy_image(game->mlx, game->img_obstacles[3]);
+	if (game->img_obstacles[4])
+		mlx_destroy_image(game->mlx, game->img_obstacles[4]);
+	if (game->img_obstacles[5])
+		mlx_destroy_image(game->mlx, game->img_obstacles[5]);
+	if (game->img_obstacles[6])
+		mlx_destroy_image(game->mlx, game->img_obstacles[6]);
+	if (game->img_obstacles[7])
+		mlx_destroy_image(game->mlx, game->img_obstacles[7]);
+	if (game->img_obstacles[8])
+		mlx_destroy_image(game->mlx, game->img_obstacles[8]);
 }
 
 void	free_walls(t_game *game)
@@ -78,8 +78,8 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_player2);
 	if (game->img_collectable)
 		mlx_destroy_image(game->mlx, game->img_collectable);
-	if (game->extra.img_sock_dirty)
-		mlx_destroy_image(game->mlx, game->extra.img_sock_dirty);
-	if (game->extra.img_sock_dots)
-		mlx_destroy_image(game->mlx, game->extra.img_sock_dots);
+	if (game->img_sock_dirty)
+		mlx_destroy_image(game->mlx, game->img_sock_dirty);
+	if (game->img_sock_dots)
+		mlx_destroy_image(game->mlx, game->img_sock_dots);
 }
