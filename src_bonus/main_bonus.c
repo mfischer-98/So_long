@@ -14,20 +14,20 @@
 
 void	game_over(t_game *game)
 {
-	int	wait;
-	int	middle_w;
-	int	middle_h;
+	// int	wait;
+	// int	middle_w;
+	// int	middle_h;
 
-	wait = 0;
-	middle_w = (game->map.width * 64) / 2 - 80;
-	middle_h = (game->map.height * 64) / 2 - 20;
-	while (wait < 30000)
-	{
-		mlx_clear_window(game->mlx, game->win);
-		mlx_string_put(game->mlx, game->win, middle_w,
-			middle_h, 0xFFFFFF, "YOU LOST :(");
-		wait++;
-	}
+	// wait = 0;
+	// middle_w = (game->map.width * 64) / 2 - 80;
+	// middle_h = (game->map.height * 64) / 2 - 20;
+	// while (wait < 30000)
+	// {
+	// 	mlx_clear_window(game->mlx, game->win);
+	// 	mlx_string_put(game->mlx, game->win, middle_w,
+	// 		middle_h, 0xFFFFFF, "YOU LOST :(");
+	// 	wait++;
+	// }
 	ft_printf("GAME OVER\nStay away from cats next time :(\n");
 	close_window(game);
 }
