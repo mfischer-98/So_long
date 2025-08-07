@@ -86,13 +86,13 @@ int	map_format(t_map *map)
 
 int	parsing_map(int argc, char **argv, t_map *map)
 {
+	ft_initialize(map);
 	if (!check_args(argc))
 		return (0);
 	if (!check_fd(argv[1]))
 		return (0);
 	if (!check_mapname(argv[1]))
 		return (0);
-	ft_initialize(map);
 	map_height(argv[1], map);
 	map_read(argv[1], map);
 	if (!map_format(map))

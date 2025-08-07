@@ -23,7 +23,7 @@
 
 # define MALLOC_ERROR 1
 # define SIZE 64
-# define ANIM_SPEED 100
+# define ANIM_SPEED 500
 # define FLOOR "textures/floor.xpm"
 # define PLAYER "textures/player.xpm"
 # define PLAYER2 "textures/player2.xpm"
