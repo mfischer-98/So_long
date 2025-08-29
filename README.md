@@ -1,5 +1,9 @@
 # So_long 🐶🧦
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0293fe3f-69ee-4dbc-833d-b2c62512eece" width="500">
+</p>
+
 A 2D game where you play as Max, the pug, collecting socks in a messy house! My first experience at 42, making a game in C, with no engine and using the school's graphical library.
 
 ## About the project
@@ -16,12 +20,18 @@ Master these core concepts through game development:
 **Featuring**: Custom 2D art and animations created by me 🎨
 
 ## The Story
+<img src="https://github.com/user-attachments/assets/5c2bdf00-9a62-433f-bead-67bf4a0c58fe" width="250">
+
 Play as Max, a pug who must gather all lost socks on moving day! Navigate through the house, collect socks, and bring them to your fortress (aka bed).
 
 ## How to Play
 - **Controls**: Arrow keys to move
 - **Objective**: Collect all socks (moves are counted!)
 - **Bonus Danger**: Watch out for the sleepy cat - you might not want to get too close!
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/3775c2c0-43e4-48c3-a0ad-1533e2720062" width="500">
+</p>
 
 ## Bonus and Features ✨
 - Diverse wall types and random furniture
@@ -30,6 +40,10 @@ Play as Max, a pug who must gather all lost socks on moving day! Navigate throug
   - Sleeps when you're far
   - Alerts when you approach
   - Attacks if you stand beside it (right or left tile)
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/b4dc8b18-6d6c-4cda-900e-5ee0c5fd9408" width="400">
+</p>
 
 ## Map Format Example
 `111111`<br>
@@ -87,4 +101,3 @@ make
 
 # Bonus version
 make bonus
-./so_long_bonus maps/map1_bonus.ber
