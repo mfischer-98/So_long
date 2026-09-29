@@ -162,7 +162,7 @@ void	*random_obstacles(t_game *game);
 void	*select_collectable(t_game *game, int x, int y);
 
 // Moves and Window
-int		handle_key_press(int keysym, t_game *game);
+int		handle_key_press(int keysym, void *param);
 int		close_window(t_game *game);
 int		reached_goal(t_game *game);
 void	free_images(t_game *game);

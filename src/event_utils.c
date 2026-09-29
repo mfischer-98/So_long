@@ -30,11 +30,13 @@ int	close_window(t_game *game)
 	exit(1);
 }
 
-int	handle_input(int keysym, t_game *game)
+int	handle_input(int keysym, void *param)
 {
 	int	dir_x;
 	int	dir_y;
-
+	t_game *game;
+	
+	game = (t_game *)param;
 	dir_x = game->player.x;
 	dir_y = game->player.y;
 	if (keysym == XK_Escape)

@@ -26,11 +26,13 @@ int	reached_goal(t_game *game)
 	return (0);
 }
 
-int	handle_key_press(int keysym, t_game *game)
+int	handle_key_press(int keysym, void *param)
 {
 	int	dir_x;
 	int	dir_y;
-
+	t_game *game;
+	
+	game = (t_game *)param;
 	dir_x = game->player.x;
 	dir_y = game->player.y;
 	if (keysym == XK_Escape)
